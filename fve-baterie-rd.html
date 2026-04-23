@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cenová nabídka FVE + baterie pro RD – ENERGO GROUP</title>
 <style>
   @page {
@@ -1032,523 +1033,457 @@
 </style>
 </head>
 <body>
-
 <!-- ================== TOOLBAR ================== -->
 <div class="toolbar no-print">
-  <div class="toolbar-title">Editor FVE + baterie pro RD · <span class="accent">ENERGO GROUP</span></div>
-  <div class="toolbar-btns">
-    <a class="tb-btn ghost" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center;">← Rozcestník</a>
-    <button class="tb-btn ghost" onclick="saveToStorage()">💾 Uložit koncept</button>
-    <button class="tb-btn ghost" onclick="loadFromStorage()">📂 Načíst koncept</button>
-    <button class="tb-btn ghost" onclick="resetTemplate()">↺ Reset</button>
-    <button class="tb-btn primary" onclick="exportPdf()">📄 Export do PDF</button>
-  </div>
+<div class="toolbar-title">Editor FVE + baterie pro RD · <span class="accent">ENERGO GROUP</span></div>
+<div class="toolbar-btns">
+<a class="tb-btn ghost" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center;">← Rozcestník</a>
+<button class="tb-btn ghost" onclick="saveToStorage()">💾 Uložit koncept</button>
+<button class="tb-btn ghost" onclick="loadFromStorage()">📂 Načíst koncept</button>
+<button class="tb-btn ghost" onclick="resetTemplate()">↺ Reset</button>
+<button class="tb-btn primary" onclick="exportPdf()">📄 Export do PDF</button>
 </div>
-
+</div>
 <div class="help-hint no-print" id="helpHint">
-  <span>💡</span>
-  <span><strong>FVE + baterie pro rodinný dům.</strong> Klikni na text a uprav. Na <strong>straně 5</strong> nahraj layout FVE z jiného programu. Pak <strong>Export do PDF</strong>.</span>
-  <button class="dismiss" onclick="document.getElementById('helpHint').style.display='none'">×</button>
+<span>💡</span>
+<span><strong>FVE + baterie pro rodinný dům.</strong> Klikni na text a uprav. Na <strong>straně 5</strong> nahraj layout FVE z jiného programu. Pak <strong>Export do PDF</strong>.</span>
+<button class="dismiss" onclick="document.getElementById('helpHint').style.display='none'">×</button>
 </div>
-
 <div class="canvas">
-
 <!-- ==================== PAGE 1 - COVER ==================== -->
 <div class="page cover">
-  <div class="cover-inner">
-
-    <div class="logo-bar">
-      <img src="assets/logo.png" alt="ENERGO GROUP">
-    </div>
-
-    <div class="label-tag" contenteditable="true">Nabídka FVE + baterie pro rodinný dům</div>
-
-    <div class="cover-title">
-      <span contenteditable="true">Fotovoltaická elektrárna</span>
-      <span class="accent" contenteditable="true">9,56 kWp / 23,2 kWh</span>
-    </div>
-
-    <div class="cover-subtitle" contenteditable="true">
+<div class="cover-inner">
+<div class="logo-bar">
+<img alt="ENERGO GROUP" src="assets/logo.png"/>
+</div>
+<div class="label-tag" contenteditable="true">Nabídka FVE + baterie pro rodinný dům</div>
+<div class="cover-title">
+<span contenteditable="true">Fotovoltaická elektrárna</span>
+<span class="accent" contenteditable="true">9,56 kWp / 23,2 kWh</span>
+</div>
+<div class="cover-subtitle" contenteditable="true">
       Kompletní dodávka FVE pro rodinný dům s baterií <strong>Solax Triple Power</strong>, hybridním střídačem
       a wallboxem pro elektromobil. Vše na klíč — včetně propojení do stávajícího rozvodu domu.
     </div>
-
-    <table class="stats-grid" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          <div class="stat-num"><span contenteditable="true">9,56</span> <span class="unit" contenteditable="true">kWp</span></div>
-          <div class="stat-lbl" contenteditable="true">Instalovaný výkon</div>
-        </td>
-        <td>
-          <div class="stat-num"><span contenteditable="true">23,2</span> <span class="unit" contenteditable="true">kWh</span></div>
-          <div class="stat-lbl" contenteditable="true">Kapacita baterie</div>
-        </td>
-        <td>
-          <div class="stat-num"><span contenteditable="true">10,8</span> <span class="unit" contenteditable="true">MWh</span></div>
-          <div class="stat-lbl" contenteditable="true">Roční výroba</div>
-        </td>
-        <td>
-          <div class="stat-num"><span contenteditable="true">30</span> <span class="unit" contenteditable="true">let</span></div>
-          <div class="stat-lbl" contenteditable="true">Záruka panelů</div>
-        </td>
-      </tr>
-    </table>
-
-    <div class="project-bar">
-      <div class="lead" contenteditable="true">Zákazník · Projekt</div>
-      <div class="name" contenteditable="true">RD pan/paní Příjmení · 2026/RXXXXXX</div>
-    </div>
-
-    <table class="highlights" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          <div class="hl-ico">☀</div>
-          <div class="hl-t" contenteditable="true">TOPCon<br>Trina Vertex S+</div>
-        </td>
-        <td>
-          <div class="hl-ico">⚡</div>
-          <div class="hl-t" contenteditable="true">Solax X3‑Hybrid<br>15 kW</div>
-        </td>
-        <td>
-          <div class="hl-ico">⬢</div>
-          <div class="hl-t" contenteditable="true">Solax Triple Power<br>23,2 kWh LFP</div>
-        </td>
-        <td>
-          <div class="hl-ico">◎</div>
-          <div class="hl-t" contenteditable="true">Optimizéry Tigo<br>požární bezpečnost</div>
-        </td>
-        <td>
-          <div class="hl-ico">☁</div>
-          <div class="hl-t" contenteditable="true">Cloud<br>monitoring</div>
-        </td>
-      </tr>
-    </table>
-
-  </div>
-
-  <div class="cover-footer">
-    <div>
-      <strong contenteditable="true">ENERGO GROUP Development s.r.o.</strong><br>
-      <span contenteditable="true">K Hájům 1233/2, 155 00 Praha  ·  IČ: 01797174 / DIČ: CZ01797174</span><br>
-      <span contenteditable="true">UniCredit Bank Czech Republic and Slovakia, a.s.  ·  č.ú.: 7907/2700</span>
-    </div>
-    <div class="right">
-      <span contenteditable="true">+420 705 899 990 · info@energogroup.cz</span><br>
-      <strong contenteditable="true">www.energogroup.cz</strong>
-    </div>
-  </div>
+<table cellpadding="0" cellspacing="0" class="stats-grid">
+<tr>
+<td>
+<div class="stat-num"><span contenteditable="true">9,56</span> <span class="unit" contenteditable="true">kWp</span></div>
+<div class="stat-lbl" contenteditable="true">Instalovaný výkon</div>
+</td>
+<td>
+<div class="stat-num"><span contenteditable="true">23,2</span> <span class="unit" contenteditable="true">kWh</span></div>
+<div class="stat-lbl" contenteditable="true">Kapacita baterie</div>
+</td>
+<td>
+<div class="stat-num"><span contenteditable="true">10,8</span> <span class="unit" contenteditable="true">MWh</span></div>
+<div class="stat-lbl" contenteditable="true">Roční výroba</div>
+</td>
+<td>
+<div class="stat-num"><span contenteditable="true">30</span> <span class="unit" contenteditable="true">let</span></div>
+<div class="stat-lbl" contenteditable="true">Záruka panelů</div>
+</td>
+</tr>
+</table>
+<div class="project-bar">
+<div class="lead" contenteditable="true">Zákazník · Projekt</div>
+<div class="name" contenteditable="true">RD pan/paní Příjmení · 2026/RXXXXXX</div>
 </div>
-
-
+<table cellpadding="0" cellspacing="0" class="highlights">
+<tr>
+<td>
+<div class="hl-ico">☀</div>
+<div class="hl-t" contenteditable="true" data-catalog="panels" data-format="short">TOPCon<br/>Trina Vertex S+</div>
+</td>
+<td>
+<div class="hl-ico">⚡</div>
+<div class="hl-t" contenteditable="true" data-catalog="inverters" data-format="short">Solax X3‑Hybrid<br/>15 kW</div>
+</td>
+<td>
+<div class="hl-ico">⬢</div>
+<div class="hl-t" contenteditable="true" data-catalog="batteries" data-format="short">Solax Triple Power<br/>23,2 kWh LFP</div>
+</td>
+<td>
+<div class="hl-ico">◎</div>
+<div class="hl-t" contenteditable="true" data-catalog="optimizers" data-format="short">Optimizéry Tigo<br/>požární bezpečnost</div>
+</td>
+<td>
+<div class="hl-ico">☁</div>
+<div class="hl-t" contenteditable="true">Cloud<br/>monitoring</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="cover-footer">
+<div>
+<strong contenteditable="true">ENERGO GROUP Development s.r.o.</strong><br/>
+<span contenteditable="true">K Hájům 1233/2, 155 00 Praha  ·  IČ: 01797174 / DIČ: CZ01797174</span><br/>
+<span contenteditable="true">UniCredit Bank Czech Republic and Slovakia, a.s.  ·  č.ú.: 7907/2700</span>
+</div>
+<div class="right">
+<span contenteditable="true">+420 705 899 990 · info@energogroup.cz</span><br/>
+<strong contenteditable="true">www.energogroup.cz</strong>
+</div>
+</div>
+</div>
 <!-- ==================== PAGE 2 - INTRO + KEY PARAMETERS ==================== -->
 <div class="page sheet">
-
-  <div class="page-header">
-    <div class="ph-left"><span contenteditable="true">Úvod</span> <span>/</span> <span contenteditable="true">Vaše FVE</span></div>
-    <div class="ph-right" contenteditable="true">Strana 02 / 06</div>
-  </div>
-
-  <div class="intro-letter">
-    <p contenteditable="true">Vážený pane / paní,</p>
-    <p contenteditable="true">na základě dohody Vám zasíláme indikativní nabídku na <strong>fotovoltaickou elektrárnu pro rodinný dům na klíč</strong>,
+<div class="page-header">
+<div class="ph-left"><span contenteditable="true">Úvod</span> <span>/</span> <span contenteditable="true">Vaše FVE</span></div>
+<div class="ph-right" contenteditable="true">Strana 02 / 06</div>
+</div>
+<div class="intro-letter">
+<p contenteditable="true">Vážený pane / paní,</p>
+<p contenteditable="true">na základě dohody Vám zasíláme indikativní nabídku na <strong>fotovoltaickou elektrárnu pro rodinný dům na klíč</strong>,
     včetně propojení do aktuálního systému domu, baterie a wallboxu pro elektromobil.</p>
-    <p contenteditable="true">Zvolili jsme nejoptimálnější umístění panelů, pro co nejvyšší výkon FVE. Konstrukční systém
+<p contenteditable="true">Zvolili jsme nejoptimálnější umístění panelů, pro co nejvyšší výkon FVE. Konstrukční systém
     <strong>K2 Systems</strong> má výhodu v nižším zatížení střechy a nepoškození krytiny.
     Navrhujeme panely <strong>TOPCon</strong> s nízkou degradací a zárukou výkonu 30 let.
     Baterie <strong>Solax Triple Power 23,2 kWh</strong> Vám zajistí nezávislost i při výpadku.</p>
-    <p contenteditable="true">Garantujeme profesionální provedení v dohodnutých termínech. Technologie držíme skladem
+<p contenteditable="true">Garantujeme profesionální provedení v dohodnutých termínech. Technologie držíme skladem
     a jsme autorizovaným partnerem <strong>SOLAX</strong> pro ČR. S fotovoltaikou máme zkušenosti
     více než 12 let. Jsme členy Solární asociace, České Fotovoltaické asociace a UKEN.
     Těšíme se na naši spolupráci.</p>
-    <div class="signature">
-      <span contenteditable="true">Václav Příhoda</span>
-      <span class="role" contenteditable="true">jednatel společnosti ENERGO GROUP Development s.r.o.</span>
-    </div>
-  </div>
-
-  <h3 class="sub" contenteditable="true">Klíčové parametry kalkulace</h3>
-
-  <table class="comp-grid" cellspacing="0" cellpadding="0" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:3mm;">
-    <tr style="display:contents;">
-      <td class="comp-card panel" style="display:block;">
-        <div class="comp-label" contenteditable="true">Instalovaný výkon</div>
-        <div class="comp-name"><span contenteditable="true">9,56 kWp</span></div>
-        <div class="comp-specs" contenteditable="true">21 ks panelů TOPCon 455 Wp</div>
-      </td>
-      <td class="comp-card battery" style="display:block;">
-        <div class="comp-label" contenteditable="true">Kapacita baterie</div>
-        <div class="comp-name"><span contenteditable="true">23,2 kWh</span></div>
-        <div class="comp-specs" contenteditable="true">Solax Triple Power LiFePO₄</div>
-      </td>
-      <td class="comp-card inverter" style="display:block;">
-        <div class="comp-label" contenteditable="true">Výkon AC</div>
-        <div class="comp-name"><span contenteditable="true">15 kW</span></div>
-        <div class="comp-specs" contenteditable="true">Solax X3‑Hybrid hybridní</div>
-      </td>
-      <td class="comp-card misc" style="display:block;">
-        <div class="comp-label" contenteditable="true">Roční odhad výroby</div>
-        <div class="comp-name"><span contenteditable="true">10,79 MWh</span></div>
-        <div class="comp-specs" contenteditable="true">K2 Systems konstrukce</div>
-      </td>
-    </tr>
-  </table>
-
-  <h3 class="sub" contenteditable="true">Údaje o zákazníkovi a projektu</h3>
-
-  <table style="width:100%; border-collapse:collapse; font-size:9pt;">
-    <tr>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; width:40%; font-weight:600; color:#6B7280;" contenteditable="true">Zákazník</td>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">RD pan/paní Příjmení</td>
-    </tr>
-    <tr>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Adresa instalace</td>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">Adresa 123, 123 45 Město</td>
-    </tr>
-    <tr>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Datum zpracování nabídky</td>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">__.__.2026</td>
-    </tr>
-    <tr>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Číslo nabídky</td>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">2026/RXXXXXX</td>
-    </tr>
-    <tr>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Platnost nabídky</td>
-      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">30 dní od vystavení</td>
-    </tr>
-  </table>
-
-  <div class="page-footer">
-    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
-    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
-  </div>
+<div class="signature">
+<span contenteditable="true">Václav Příhoda</span>
+<span class="role" contenteditable="true">jednatel společnosti ENERGO GROUP Development s.r.o.</span>
 </div>
-
-
+</div>
+<h3 class="sub" contenteditable="true">Klíčové parametry kalkulace</h3>
+<table cellpadding="0" cellspacing="0" class="comp-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:3mm;">
+<tr style="display:contents;">
+<td class="comp-card panel" style="display:block;">
+<div class="comp-label" contenteditable="true">Instalovaný výkon</div>
+<div class="comp-name"><span contenteditable="true" data-catalog="panels" data-format="name">9,56 kWp</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="panels" data-format="specs">21 ks panelů TOPCon 455 Wp</div>
+</td>
+<td class="comp-card battery" style="display:block;">
+<div class="comp-label" contenteditable="true">Kapacita baterie</div>
+<div class="comp-name"><span contenteditable="true" data-catalog="batteries" data-format="name">23,2 kWh</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="batteries" data-format="specs">Solax Triple Power LiFePO₄</div>
+</td>
+<td class="comp-card inverter" style="display:block;">
+<div class="comp-label" contenteditable="true">Výkon AC</div>
+<div class="comp-name"><span contenteditable="true" data-catalog="inverters" data-format="name">15 kW</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="inverters" data-format="specs">Solax X3‑Hybrid hybridní</div>
+</td>
+<td class="comp-card misc" style="display:block;">
+<div class="comp-label" contenteditable="true">Roční odhad výroby</div>
+<div class="comp-name"><span contenteditable="true">10,79 MWh</span></div>
+<div class="comp-specs" contenteditable="true">K2 Systems konstrukce</div>
+</td>
+</tr>
+</table>
+<h3 class="sub" contenteditable="true">Údaje o zákazníkovi a projektu</h3>
+<table style="width:100%; border-collapse:collapse; font-size:9pt;">
+<tr>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; width:40%; font-weight:600; color:#6B7280;">Zákazník</td>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF;">RD pan/paní Příjmení</td>
+</tr>
+<tr>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;">Adresa instalace</td>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF;">Adresa 123, 123 45 Město</td>
+</tr>
+<tr>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;">Datum zpracování nabídky</td>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF;">__.__.2026</td>
+</tr>
+<tr>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;">Číslo nabídky</td>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF;">2026/RXXXXXX</td>
+</tr>
+<tr>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;">Platnost nabídky</td>
+<td contenteditable="true" style="padding:2mm 4mm; border:1px solid #E6E9EF;">30 dní od vystavení</td>
+</tr>
+</table>
+<div class="page-footer">
+<div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+<div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+</div>
+</div>
 <!-- ==================== PAGE 3 - HLAVNÍ KOMPONENTY ==================== -->
 <div class="page sheet">
-
-  <div class="page-header">
-    <div class="ph-left"><span contenteditable="true">Hlavní komponenty</span> <span>/</span> <span contenteditable="true">FVE + BESS</span></div>
-    <div class="ph-right" contenteditable="true">Strana 03 / 06</div>
-  </div>
-
-  <h2 class="section"><span contenteditable="true">Hlavní součásti</span> <span class="accent" contenteditable="true">FVE</span></h2>
-  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;" contenteditable="true">
+<div class="page-header">
+<div class="ph-left"><span contenteditable="true">Hlavní komponenty</span> <span>/</span> <span contenteditable="true">FVE + BESS</span></div>
+<div class="ph-right" contenteditable="true">Strana 03 / 06</div>
+</div>
+<h2 class="section"><span contenteditable="true">Hlavní součásti</span> <span class="accent" contenteditable="true">FVE</span></h2>
+<p contenteditable="true" style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;">
     Sestava komponent byla zvolena s důrazem na dlouhou životnost, vysokou účinnost
     a celoroční stabilitu výroby.
   </p>
-
-  <div class="comp-grid">
-
-    <div class="comp-card panel">
-      <div class="comp-label" contenteditable="true">Solární panely</div>
-      <div class="comp-name"><span class="count" contenteditable="true">21 ks</span> <span contenteditable="true">Trina Vertex S+ 455 Wp</span></div>
-      <div class="comp-specs" contenteditable="true">TOPCon double glass, black frame · TSM‑455‑NEG9R.28 · účinnost 22,5 %
+<div class="comp-grid">
+<div class="comp-card panel">
+<div class="comp-label" contenteditable="true">Solární panely</div>
+<div class="comp-name"><span class="count" contenteditable="true">21 ks</span> <span contenteditable="true" data-catalog="panels" data-format="name">Trina Vertex S+ 455 Wp</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="panels" data-format="specs">TOPCon double glass, black frame · TSM‑455‑NEG9R.28 · účinnost 22,5 %
       · Tier 1 výrobce · záruka poklesu výkonu 30 let</div>
-    </div>
-
-    <div class="comp-card inverter">
-      <div class="comp-label" contenteditable="true">Střídače</div>
-      <div class="comp-name"><span class="count" contenteditable="true">1 ks</span> <span contenteditable="true">Solax X3‑Hybrid‑15.0‑D</span></div>
-      <div class="comp-specs" contenteditable="true">3fázový hybridní střídač · 15 kW · funkce zálohy domu při výpadku
-      · autorizovaný partner Solax pro ČR · záruka 10 let</div>
-    </div>
-
-    <div class="comp-card battery">
-      <div class="comp-label" contenteditable="true">Bateriové úložiště</div>
-      <div class="comp-name"><span contenteditable="true">Solax Triple Power T‑BAT H23.2</span></div>
-      <div class="comp-specs" contenteditable="true">LiFePO₄ · 23,2 kWh modulární · integrovaný BMS
-      · záruka 10 let · možnost rozšíření přidáním dalších modulů</div>
-    </div>
-
-    <div class="comp-card misc">
-      <div class="comp-label" contenteditable="true">Optimizéry / požární bezpečnost</div>
-      <div class="comp-name"><span class="count" contenteditable="true">16 ks</span> <span contenteditable="true">Tigo TS4‑A‑2F</span></div>
-      <div class="comp-specs" contenteditable="true">Rapid shutdown na úrovni panelu · monitoring výkonu
-      · vysílač Tigo CCA (1 ks) · splnění požadavků PBO pro RD</div>
-    </div>
-
-    <div class="comp-card misc">
-      <div class="comp-label" contenteditable="true">Konstrukce</div>
-      <div class="comp-name"><span contenteditable="true">K2 Systems GmbH</span></div>
-      <div class="comp-specs" contenteditable="true">Nástřešní hliníková konstrukce · nepoškození krytiny
-      · ideální pro šikmé střechy RD · dlouhá životnost</div>
-    </div>
-
-    <div class="comp-card misc">
-      <div class="comp-label" contenteditable="true">Wallbox pro elektromobil</div>
-      <div class="comp-name"><span class="count" contenteditable="true">1 ks</span> <span contenteditable="true">Solax EV22 Wallbox 22 kW</span></div>
-      <div class="comp-specs" contenteditable="true">3fázové nabíjení až 22 kW · integrace do FVE systému
-      · chytré dobíjení z přebytků FVE · záruka 3 roky</div>
-    </div>
-
-    <div class="comp-card misc">
-      <div class="comp-label" contenteditable="true">Monitoring a řízení</div>
-      <div class="comp-name"><span contenteditable="true">Cloud monitoring Solax</span></div>
-      <div class="comp-specs" contenteditable="true">24/7 vzdálený dohled přes mobilní aplikaci
-      · denní/měsíční reporting výroby · alerty při poruchách</div>
-    </div>
-
-    <div class="comp-card misc">
-      <div class="comp-label" contenteditable="true">Projekt a administrativa</div>
-      <div class="comp-name"><span contenteditable="true">PD, inženýring, administrativa</span></div>
-      <div class="comp-specs" contenteditable="true">Projektová dokumentace · žádost o připojení do distribuční soustavy
-      · revize · zaškolení obsluhy</div>
-    </div>
-
-  </div>
-
-  <div class="page-footer">
-    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
-    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
-  </div>
 </div>
-
-
+<div class="comp-card inverter">
+<div class="comp-label" contenteditable="true">Střídače</div>
+<div class="comp-name"><span class="count" contenteditable="true">1 ks</span> <span contenteditable="true" data-catalog="inverters" data-format="name">Solax X3‑Hybrid‑15.0‑D</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="inverters" data-format="specs">3fázový hybridní střídač · 15 kW · funkce zálohy domu při výpadku
+      · autorizovaný partner Solax pro ČR · záruka 10 let</div>
+</div>
+<div class="comp-card battery">
+<div class="comp-label" contenteditable="true">Bateriové úložiště</div>
+<div class="comp-name"><span contenteditable="true" data-catalog="batteries" data-format="name">Solax Triple Power T‑BAT H23.2</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="batteries" data-format="specs">LiFePO₄ · 23,2 kWh modulární · integrovaný BMS
+      · záruka 10 let · možnost rozšíření přidáním dalších modulů</div>
+</div>
+<div class="comp-card misc">
+<div class="comp-label" contenteditable="true">Optimizéry / požární bezpečnost</div>
+<div class="comp-name"><span class="count" contenteditable="true">16 ks</span> <span contenteditable="true" data-catalog="optimizers" data-format="name">Tigo TS4‑A‑2F</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="optimizers" data-format="specs">Rapid shutdown na úrovni panelu · monitoring výkonu
+      · vysílač Tigo CCA (1 ks) · splnění požadavků PBO pro RD</div>
+</div>
+<div class="comp-card misc">
+<div class="comp-label" contenteditable="true">Konstrukce</div>
+<div class="comp-name"><span contenteditable="true" data-catalog="construction" data-format="name">K2 Systems GmbH</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="construction" data-format="specs">Nástřešní hliníková konstrukce · nepoškození krytiny
+      · ideální pro šikmé střechy RD · dlouhá životnost</div>
+</div>
+<div class="comp-card misc">
+<div class="comp-label" contenteditable="true">Wallbox pro elektromobil</div>
+<div class="comp-name"><span class="count" contenteditable="true">1 ks</span> <span contenteditable="true" data-catalog="wallbox" data-format="name">Solax EV22 Wallbox 22 kW</span></div>
+<div class="comp-specs" contenteditable="true" data-catalog="wallbox" data-format="specs">3fázové nabíjení až 22 kW · integrace do FVE systému
+      · chytré dobíjení z přebytků FVE · záruka 3 roky</div>
+</div>
+<div class="comp-card misc">
+<div class="comp-label" contenteditable="true">Monitoring a řízení</div>
+<div class="comp-name"><span contenteditable="true">Cloud monitoring Solax</span></div>
+<div class="comp-specs" contenteditable="true">24/7 vzdálený dohled přes mobilní aplikaci
+      · denní/měsíční reporting výroby · alerty při poruchách</div>
+</div>
+<div class="comp-card misc">
+<div class="comp-label" contenteditable="true">Projekt a administrativa</div>
+<div class="comp-name"><span contenteditable="true">PD, inženýring, administrativa</span></div>
+<div class="comp-specs" contenteditable="true">Projektová dokumentace · žádost o připojení do distribuční soustavy
+      · revize · zaškolení obsluhy</div>
+</div>
+</div>
+<div class="page-footer">
+<div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+<div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+</div>
+</div>
 <!-- ==================== PAGE 4 - SCOPE + PRICE + PAYMENT ==================== -->
 <div class="page sheet">
-
-  <div class="page-header">
-    <div class="ph-left"><span contenteditable="true">Rozsah dodávky</span> <span>/</span> <span contenteditable="true">Cena a harmonogram</span></div>
-    <div class="ph-right" contenteditable="true">Strana 04 / 06</div>
-  </div>
-
-  <h2 class="section"><span contenteditable="true">Rozsah</span> <span class="accent" contenteditable="true">dodávky pro RD</span></h2>
-  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;" contenteditable="true">
+<div class="page-header">
+<div class="ph-left"><span contenteditable="true">Rozsah dodávky</span> <span>/</span> <span contenteditable="true">Cena a harmonogram</span></div>
+<div class="ph-right" contenteditable="true">Strana 04 / 06</div>
+</div>
+<h2 class="section"><span contenteditable="true">Rozsah</span> <span class="accent" contenteditable="true">dodávky pro RD</span></h2>
+<p contenteditable="true" style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;">
     Cena zahrnuje kompletní dodávku FVE pro rodinný dům včetně panelů, hybridního střídače,
     baterie, wallboxu, konstrukce K2, instalace a uvedení do provozu.
   </p>
-
-  <table class="scope-table" cellspacing="0" cellpadding="0">
-    <tr>
-      <td contenteditable="true">Návrh optimálního řešení FVE pro RD</td>
-      <td contenteditable="true">Návrh nejvhodnější konfigurace pro dům</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Projektová dokumentace</td>
-      <td contenteditable="true">Komunikace s distribuční společností (žádost, revize)</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Dodávka panelů, střídače, baterie, wallboxu</td>
-      <td contenteditable="true">Rozvaděče a kabeláž (vč. funkce zálohy)</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Konstrukce K2 Systems pro šikmou střechu</td>
-      <td contenteditable="true">Doprava a složení technologie na místě</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Instalace panelů, střídače, baterie a wallboxu</td>
-      <td contenteditable="true">Požární bezpečnost (Tigo optimizéry, rapid shutdown)</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Integrace do rozvodu RD (s funkcí zálohy)</td>
-      <td contenteditable="true">Aplikace pro mobilní telefon (monitoring)</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Administrativa, připojení, revize</td>
-      <td contenteditable="true">Cloud monitoring a reporting</td>
-    </tr>
-    <tr>
-      <td contenteditable="true">Předání, zaškolení obsluhy, zkušební provoz</td>
-      <td contenteditable="true">Záruční servis a O&amp;M na vyžádání</td>
-    </tr>
-  </table>
-
-  <div class="price-box">
-    <div class="price-box-inner">
-      <div class="price-label" contenteditable="true">Cena FVE + baterie pro RD na klíč</div>
-      <div class="price-amount"><span contenteditable="true">628&nbsp;174</span><span class="currency" contenteditable="true">Kč</span></div>
-      <div class="price-note" contenteditable="true">s DPH · zahrnuje všechny položky rozsahu dodávky uvedené výše</div>
-    </div>
-  </div>
-
-  <table class="terms-block" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>
-        <div class="terms-title" contenteditable="true">Harmonogram</div>
-        <ul class="terms-list">
-          <li contenteditable="true"><strong>0. měsíc:</strong> podpis SoD a úhrada zálohové faktury</li>
-          <li contenteditable="true"><strong>1.–3. měsíc:</strong> PD, administrativa, dodávka technologií</li>
-          <li contenteditable="true"><strong>3.–4. měsíc:</strong> instalace, uvedení do provozu, revize a předání</li>
-        </ul>
-      </td>
-      <td>
-        <div class="terms-title" contenteditable="true">Platební podmínky</div>
-        <ul class="terms-list">
-          <li contenteditable="true"><strong>10 %</strong> po podpisu Smlouvy o dílo</li>
-          <li contenteditable="true"><strong>60 %</strong> při potvrzení termínu montáže</li>
-          <li contenteditable="true"><strong>30 %</strong> po předání · splatnost 7 dnů</li>
-        </ul>
-      </td>
-    </tr>
-  </table>
-
-  <div class="co2-banner">
-    <div class="co2-icon">CO₂</div>
-    <div class="co2-text">
-      <div class="co2-label" contenteditable="true">Úspora emisí</div>
-      <div class="co2-value"><span class="num" contenteditable="true">90 840</span> <span contenteditable="true">kg CO₂ / rok</span></div>
-    </div>
-  </div>
-
-  <div class="page-footer">
-    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
-    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
-  </div>
+<table cellpadding="0" cellspacing="0" class="scope-table">
+<tr>
+<td contenteditable="true">Návrh optimálního řešení FVE pro RD</td>
+<td contenteditable="true">Návrh nejvhodnější konfigurace pro dům</td>
+</tr>
+<tr>
+<td contenteditable="true">Projektová dokumentace</td>
+<td contenteditable="true">Komunikace s distribuční společností (žádost, revize)</td>
+</tr>
+<tr>
+<td contenteditable="true">Dodávka panelů, střídače, baterie, wallboxu</td>
+<td contenteditable="true">Rozvaděče a kabeláž (vč. funkce zálohy)</td>
+</tr>
+<tr>
+<td contenteditable="true">Konstrukce K2 Systems pro šikmou střechu</td>
+<td contenteditable="true">Doprava a složení technologie na místě</td>
+</tr>
+<tr>
+<td contenteditable="true">Instalace panelů, střídače, baterie a wallboxu</td>
+<td contenteditable="true">Požární bezpečnost (Tigo optimizéry, rapid shutdown)</td>
+</tr>
+<tr>
+<td contenteditable="true">Integrace do rozvodu RD (s funkcí zálohy)</td>
+<td contenteditable="true">Aplikace pro mobilní telefon (monitoring)</td>
+</tr>
+<tr>
+<td contenteditable="true">Administrativa, připojení, revize</td>
+<td contenteditable="true">Cloud monitoring a reporting</td>
+</tr>
+<tr>
+<td contenteditable="true">Předání, zaškolení obsluhy, zkušební provoz</td>
+<td contenteditable="true">Záruční servis a O&amp;M na vyžádání</td>
+</tr>
+</table>
+<div class="price-box">
+<div class="price-box-inner">
+<div class="price-label" contenteditable="true">Cena FVE + baterie pro RD na klíč</div>
+<div class="price-amount"><span contenteditable="true">628 174</span><span class="currency" contenteditable="true">Kč</span></div>
+<div class="price-note" contenteditable="true">s DPH · zahrnuje všechny položky rozsahu dodávky uvedené výše</div>
 </div>
-
-
+</div>
+<table cellpadding="0" cellspacing="0" class="terms-block">
+<tr>
+<td>
+<div class="terms-title" contenteditable="true">Harmonogram</div>
+<ul class="terms-list">
+<li contenteditable="true"><strong>0. měsíc:</strong> podpis SoD a úhrada zálohové faktury</li>
+<li contenteditable="true"><strong>1.–3. měsíc:</strong> PD, administrativa, dodávka technologií</li>
+<li contenteditable="true"><strong>3.–4. měsíc:</strong> instalace, uvedení do provozu, revize a předání</li>
+</ul>
+</td>
+<td>
+<div class="terms-title" contenteditable="true">Platební podmínky</div>
+<ul class="terms-list">
+<li contenteditable="true"><strong>10 %</strong> po podpisu Smlouvy o dílo</li>
+<li contenteditable="true"><strong>60 %</strong> při potvrzení termínu montáže</li>
+<li contenteditable="true"><strong>30 %</strong> po předání · splatnost 7 dnů</li>
+</ul>
+</td>
+</tr>
+</table>
+<div class="co2-banner">
+<div class="co2-icon">CO₂</div>
+<div class="co2-text">
+<div class="co2-label" contenteditable="true">Úspora emisí</div>
+<div class="co2-value"><span class="num" contenteditable="true">90 840</span> <span contenteditable="true">kg CO₂ / rok</span></div>
+</div>
+</div>
+<div class="page-footer">
+<div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+<div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+</div>
+</div>
 <!-- ==================== PAGE 5 - LAYOUT FVE ==================== -->
 <div class="page sheet layout-page">
-
-  <div class="page-header">
-    <div class="ph-left"><span contenteditable="true">Layout FVE</span> <span>/</span> <span contenteditable="true">Umístění na budově</span></div>
-    <div class="ph-right" contenteditable="true">Strana 05 / 06</div>
-  </div>
-
-  <h2 class="section"><span contenteditable="true">Layout</span> <span class="accent" contenteditable="true">FVE na budově</span></h2>
-  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;" contenteditable="true">
+<div class="page-header">
+<div class="ph-left"><span contenteditable="true">Layout FVE</span> <span>/</span> <span contenteditable="true">Umístění na budově</span></div>
+<div class="ph-right" contenteditable="true">Strana 05 / 06</div>
+</div>
+<h2 class="section"><span contenteditable="true">Layout</span> <span class="accent" contenteditable="true">FVE na budově</span></h2>
+<p contenteditable="true" style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;">
     Navržené umístění panelů, orientace a rozložení stringů. Konkrétní rozmístění dle
     statického posouzení a stínových analýz.
   </p>
-
-  <div class="layout-frame" onclick="uploadLayoutImage(this)" title="Klikni pro nahrání layoutu z jiného programu">
-    <div class="layout-placeholder" id="layoutPlaceholder">
-      <div class="lph-icon">🖼</div>
-      <div class="lph-title">Klikni pro nahrání layoutu FVE</div>
-      <div class="lph-desc">
+<div class="layout-frame" onclick="uploadLayoutImage(this)" title="Klikni pro nahrání layoutu z jiného programu">
+<div class="layout-placeholder" id="layoutPlaceholder">
+<div class="lph-icon">🖼</div>
+<div class="lph-title">Klikni pro nahrání layoutu FVE</div>
+<div class="lph-desc">
         Nahraj JPG nebo PNG layout z tvého plánovacího programu (např. PV*SOL, Helios 3D,
         SketchUp). Obrázek se zobrazí zde a v exportovaném PDF.
       </div>
-    </div>
-  </div>
-
-  <div class="page-footer">
-    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
-    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
-  </div>
 </div>
-
-
+</div>
+<div class="page-footer">
+<div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+<div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+</div>
+</div>
 <!-- ==================== PAGE 6 - WHY US & SIGNATURE ==================== -->
 <div class="page sheet">
-
-  <div class="page-header">
-    <div class="ph-left"><span contenteditable="true">Proč s námi</span> <span>/</span> <span contenteditable="true">Kontakt</span></div>
-    <div class="ph-right" contenteditable="true">Strana 06 / 06</div>
-  </div>
-
-  <h2 class="section"><span contenteditable="true">Proč</span> <span class="accent" contenteditable="true">ENERGO GROUP</span></h2>
-  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:6mm;" contenteditable="true">
+<div class="page-header">
+<div class="ph-left"><span contenteditable="true">Proč s námi</span> <span>/</span> <span contenteditable="true">Kontakt</span></div>
+<div class="ph-right" contenteditable="true">Strana 06 / 06</div>
+</div>
+<h2 class="section"><span contenteditable="true">Proč</span> <span class="accent" contenteditable="true">ENERGO GROUP</span></h2>
+<p contenteditable="true" style="color:#4A5261; font-size:9.5pt; margin-bottom:6mm;">
     Jsme renomovaná společnost specializující se na kompletní realizaci průmyslových
     fotovoltaických elektráren a akumulace BESS. Téměř všichni členové týmu pracují
     v energetice více než 15 let.
   </p>
-
-  <table class="why-grid" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>
-        <div class="why-num" contenteditable="true">01</div>
-        <div class="why-title" contenteditable="true">Na klíč</div>
-        <div class="why-desc" contenteditable="true">
+<table cellpadding="0" cellspacing="0" class="why-grid">
+<tr>
+<td>
+<div class="why-num" contenteditable="true">01</div>
+<div class="why-title" contenteditable="true">Na klíč</div>
+<div class="why-desc" contenteditable="true">
           Jsme zodpovědní za všechny činnosti — projektování, inženýring,
           dodávku, výstavbu i uvedení do provozu. Jeden partner, jedna odpovědnost.
         </div>
-      </td>
-      <td>
-        <div class="why-num" contenteditable="true">02</div>
-        <div class="why-title" contenteditable="true">TOP komponenty</div>
-        <div class="why-desc" contenteditable="true">
+</td>
+<td>
+<div class="why-num" contenteditable="true">02</div>
+<div class="why-title" contenteditable="true">TOP komponenty</div>
+<div class="why-desc" contenteditable="true">
           Autorizovaný partner SolarEdge, Solax a Huawei pro ČR. Panely TOPCon
           Tier 1 výrobců, všechny technologie držíme skladem.
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="why-num" contenteditable="true">03</div>
-        <div class="why-title" contenteditable="true">Jasný termín</div>
-        <div class="why-desc" contenteditable="true">
+</td>
+</tr>
+<tr>
+<td>
+<div class="why-num" contenteditable="true">03</div>
+<div class="why-title" contenteditable="true">Jasný termín</div>
+<div class="why-desc" contenteditable="true">
           Ve Smlouvě o dílo uvádíme termín instalace, který dodržíme.
           Jasné milníky, transparentní reporting, žádná překvapení.
         </div>
-      </td>
-      <td>
-        <div class="why-num" contenteditable="true">04</div>
-        <div class="why-title" contenteditable="true">Provoz a údržba</div>
-        <div class="why-desc" contenteditable="true">
+</td>
+<td>
+<div class="why-num" contenteditable="true">04</div>
+<div class="why-title" contenteditable="true">Provoz a údržba</div>
+<div class="why-desc" contenteditable="true">
           Pro všechny instalace nabízíme servis a provozování (O&amp;M) — od
           preventivní údržby přes vzdálený dohled až po pohotovostní servis.
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" style="width:100%;">
-        <div class="why-num" contenteditable="true">05</div>
-        <div class="why-title" contenteditable="true">Znáte nás</div>
-        <div class="why-desc" contenteditable="true">
+</td>
+</tr>
+<tr>
+<td colspan="2" style="width:100%;">
+<div class="why-num" contenteditable="true">05</div>
+<div class="why-title" contenteditable="true">Znáte nás</div>
+<div class="why-desc" contenteditable="true">
           Za naší prací si stojíme. Na všech projektech se přímo podílí management
           společnosti, který je Vám kdykoli k dispozici. 15+ let zkušeností v energetice,
           vlastní pipeline FVE a BESS projektů v rámci celé ČR.
         </div>
-      </td>
-    </tr>
-  </table>
-
-
-  <div class="media-feature">
-    <div class="mf-left">
-      <div class="mf-badge-tag" contenteditable="true">Debata</div>
-      <div class="hn-masthead">
-        <div class="hn-mark">HN</div>
-        <div class="hn-divider"></div>
-        <div class="mf-brand" contenteditable="true">Hospodářské noviny</div>
-      </div>
-    </div>
-    <div class="mf-right">
-      <div class="mf-overline" contenteditable="true">ENERGO GROUP  ·  AKTUÁLNĚ  ·  V&nbsp;MÉDIÍCH</div>
-      <div class="mf-title" contenteditable="true">Energetické superdálnice umožní sdílení energie z&nbsp;baterií i&nbsp;mezi státy</div>
-      <a class="mf-link" href="https://archiv.hn.cz/c1-67864210-energeticke-superdalnice-umozni-sdileni-energie-z-baterii-i-mezi-staty" target="_blank" rel="noopener">→&nbsp;&nbsp;archiv.hn.cz/c1-67864210</a>
-    </div>
-  </div>
-
-  <div class="memberships">
-    <div class="m-title" contenteditable="true">Členství v odborných asociacích</div>
-    <div class="m-list" contenteditable="true">Solární asociace &nbsp;·&nbsp; Česká fotovoltaická asociace &nbsp;·&nbsp; Unie komunitní energetiky (UKEN)</div>
-  </div>
-
-  <div class="signoff">
-    <div class="signoff-inner">
-      <div class="signoff-left">
-        <div class="sign-title" contenteditable="true">S přáním úspěšné spolupráce</div>
-        <div class="sign-name" contenteditable="true">Václav Příhoda</div>
-        <div class="sign-role" contenteditable="true">jednatel společnosti · ENERGO GROUP Development s.r.o.</div>
-      </div>
-      <div class="signoff-right">
-        <div class="validity-tag">
-          <span class="v-label" contenteditable="true">Platnost nabídky</span>
-          <span class="v-date" contenteditable="true">30 dní od vystavení</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="website-ref">
-    Další informace a reference naleznete na <a href="https://www.energogroup.cz" target="_blank">www.energogroup.cz</a>
-  </div>
-
-  <div class="page-footer">
-    <div>
-      <strong contenteditable="true">ENERGO GROUP Development s.r.o.</strong> · <span contenteditable="true">K Hájům 1233/2, 155 00 Praha · +420 705 899 990</span>
-    </div>
-    <div class="pf-right"><span contenteditable="true">info@energogroup.cz</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
-  </div>
+</td>
+</tr>
+</table>
+<div class="media-feature">
+<div class="mf-left">
+<div class="mf-badge-tag" contenteditable="true">Debata</div>
+<div class="hn-masthead">
+<div class="hn-mark">HN</div>
+<div class="hn-divider"></div>
+<div class="mf-brand" contenteditable="true">Hospodářské noviny</div>
 </div>
-
+</div>
+<div class="mf-right">
+<div class="mf-overline" contenteditable="true">ENERGO GROUP  ·  AKTUÁLNĚ  ·  V MÉDIÍCH</div>
+<div class="mf-title" contenteditable="true">Energetické superdálnice umožní sdílení energie z baterií i mezi státy</div>
+<a class="mf-link" href="https://archiv.hn.cz/c1-67864210-energeticke-superdalnice-umozni-sdileni-energie-z-baterii-i-mezi-staty" rel="noopener" target="_blank">→  archiv.hn.cz/c1-67864210</a>
+</div>
+</div>
+<div class="memberships">
+<div class="m-title" contenteditable="true">Členství v odborných asociacích</div>
+<div class="m-list" contenteditable="true">Solární asociace  ·  Česká fotovoltaická asociace  ·  Unie komunitní energetiky (UKEN)</div>
+</div>
+<div class="signoff">
+<div class="signoff-inner">
+<div class="signoff-left">
+<div class="sign-title" contenteditable="true">S přáním úspěšné spolupráce</div>
+<div class="sign-name" contenteditable="true">Václav Příhoda</div>
+<div class="sign-role" contenteditable="true">jednatel společnosti · ENERGO GROUP Development s.r.o.</div>
+</div>
+<div class="signoff-right">
+<div class="validity-tag">
+<span class="v-label" contenteditable="true">Platnost nabídky</span>
+<span class="v-date" contenteditable="true">30 dní od vystavení</span>
+</div>
+</div>
+</div>
+</div>
+<div class="website-ref">
+    Další informace a reference naleznete na <a href="https://www.energogroup.cz" target="_blank">www.energogroup.cz</a>
+</div>
+<div class="page-footer">
+<div>
+<strong contenteditable="true">ENERGO GROUP Development s.r.o.</strong> · <span contenteditable="true">K Hájům 1233/2, 155 00 Praha · +420 705 899 990</span>
+</div>
+<div class="pf-right"><span contenteditable="true">info@energogroup.cz</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+</div>
+</div>
 </div><!-- /canvas -->
-
 <!-- ================== SCRIPTS ================== -->
 <script>
 const STORAGE_KEY = 'energogroup_nabidka_fve_baterie_rd_draft_v1';
@@ -1704,6 +1639,5 @@ window.addEventListener('beforeunload', (e) => {
 const originalSave = saveToStorage;
 saveToStorage = function() { originalSave(); isDirty = false; };
 </script>
-
-</body>
+<script src="assets/catalog.js"></script></body>
 </html>
