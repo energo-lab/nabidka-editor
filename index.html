@@ -259,6 +259,126 @@
     margin-bottom: 6px;
   }
 
+  /* ============ NÁVOD ============ */
+  .guide {
+    margin-top: 48px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 28px 32px 30px 32px;
+  }
+  .guide-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #EC6B2D;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .guide-headline {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.4px;
+    margin-bottom: 24px;
+  }
+  .guide-headline .accent { color: #EC6B2D; }
+  .guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .guide-step {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 16px 18px 18px 18px;
+    position: relative;
+  }
+  .guide-step .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(236,107,45,0.15);
+    border: 1px solid rgba(236,107,45,0.5);
+    color: #EC6B2D;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .guide-step .step-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .guide-step .step-desc {
+    font-size: 12.5px;
+    color: #B8C1CC;
+    line-height: 1.5;
+  }
+  .guide-step .step-desc strong { color: #ffffff; font-weight: 700; }
+  .guide-step .step-desc .key {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11px;
+    color: #ffffff;
+    margin: 0 1px;
+  }
+
+  .guide-tips {
+    background: rgba(30,147,210,0.06);
+    border-left: 3px solid #1E93D2;
+    border-radius: 4px;
+    padding: 14px 18px 16px 18px;
+    margin-top: 8px;
+  }
+  .guide-tips-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1E93D2;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .guide-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .guide-tips li {
+    font-size: 12.5px;
+    color: #B8C1CC;
+    padding: 3px 0 3px 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .guide-tips li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #1E93D2;
+    font-weight: 700;
+  }
+  .guide-tips strong { color: #ffffff; font-weight: 700; }
+  .guide-tips code {
+    background: rgba(255,255,255,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11.5px;
+    color: #EC6B2D;
+  }
+
   /* ============ FOOTER ============ */
   footer {
     margin-top: 64px;
@@ -462,13 +582,108 @@
   </div>
 
 
-  <!-- ========== INFO CARD ========== -->
-  <div class="info-card">
-    <span class="info-title">Jak to funguje</span>
-    Klikni na aktivní dlaždici → <strong>šablona se otevře s předvyplněným obsahem</strong>.
-    Uprav texty, ceny a komponenty přímo v dokumentu a stiskni <strong>„Export do PDF"</strong>
-    v toolbaru nahoře. Šablony <strong>ukládají koncept</strong> do tvého prohlížeče —
-    po zavření záložky se dá pokračovat tam, kde jsi skončil.
+  <!-- ========== NÁVOD ========== -->
+  <div class="guide">
+    <div class="guide-title">Návod · jak na to</div>
+    <div class="guide-headline">6 kroků k <span class="accent">hotové nabídce</span></div>
+
+    <div class="guide-steps">
+
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Vyber šablonu</div>
+        <div class="step-desc">
+          Klikni na aktivní dlaždici výše podle technologie a typu zákazníka
+          (BESS / FVE / FVE+baterie · C&amp;I / RD).
+          Šablona se otevře s předvyplněným obsahem.
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Vyber komponenty z katalogu</div>
+        <div class="step-desc">
+          Na <strong>straně 1</strong> jsou pod hlavními čísly 4 oranžové ikony
+          (panely, střídače, baterie, optimizéry). Klikni na text pod ikonou →
+          objeví se dropdown s katalogem (15 panelů, 14 střídačů, 28 baterií).
+          Vyber produkt, <strong>vše se vyplní napříč celým dokumentem</strong>.
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Uprav texty a čísla</div>
+        <div class="step-desc">
+          Klikni na libovolný text — pole se zvýrazní oranžovou barvou.
+          Edituj přímo. Změň jméno klienta, číslo projektu, výkon (kWp/kWh),
+          cenu, datum platnosti.
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-title">Nahraj layout / fotku</div>
+        <div class="step-desc">
+          U FVE šablon je na <strong>straně 5</strong> šedá plocha pro layout FVE.
+          Klikni na ni a nahraj JPG z PV*SOL nebo jiného plánovacího programu.
+          U BESS na straně 2 můžeš nahrát fotku produktu místo SVG ilustrace.
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="step-num">5</div>
+        <div class="step-title">Ulož koncept (volitelné)</div>
+        <div class="step-desc">
+          V toolbaru klikni <strong>💾 Uložit koncept</strong> — uloží stav do
+          tvého prohlížeče. Po zavření a opětovném otevření klikni
+          <strong>📂 Načíst koncept</strong> a pokračuj kde jsi skončil.
+        </div>
+      </div>
+
+      <div class="guide-step">
+        <div class="step-num">6</div>
+        <div class="step-title">Export do PDF</div>
+        <div class="step-desc">
+          Klikni oranžové <strong>📄 Export do PDF</strong> v toolbaru.
+          V tiskovém dialogu vyber <strong>„Uložit jako PDF"</strong>.
+          Soubor se automaticky pojmenuje podle čísla projektu.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="guide-tips">
+      <div class="guide-tips-title">Tipy a praktické rady</div>
+      <ul>
+        <li>
+          <strong>Katalog umí filtrovat.</strong> Po kliknutí napiš <code>aiko</code>,
+          <code>longi</code>, <code>pylontech</code> nebo <code>c&amp;i</code> a dropdown
+          se zúží. Šipky <span class="key">↑</span> <span class="key">↓</span> a
+          <span class="key">Enter</span> pro výběr klávesnicí.
+        </li>
+        <li>
+          <strong>Broadcast napříč dokumentem.</strong> Při výběru produktu z katalogu
+          se aktualizují všechna místa najednou — cover ikonka, klíčové parametry
+          na straně 2, hlavní komponenty na straně 3.
+        </li>
+        <li>
+          <strong>Každá šablona má svůj koncept.</strong> Koncepty se nekřížově nepřepisují —
+          BESS, FVE C&amp;I, RD atd. mají oddělené úložiště v prohlížeči.
+        </li>
+        <li>
+          <strong>Tlačítko ↺ Reset</strong> vrátí šablonu do výchozího stavu a smaže koncept.
+          <strong>Vždy nejdřív exportuj PDF</strong>, pak resetuj.
+        </li>
+        <li>
+          <strong>Smazání historie prohlížeče = ztráta konceptu.</strong> Před úklidem
+          vždy nejdřív vyexportuj rozdělanou nabídku do PDF.
+        </li>
+        <li>
+          <strong>Nástroj funguje offline</strong> — po prvním načtení nepotřebuje internet,
+          dá se editovat a tisknout i bez připojení.
+        </li>
+      </ul>
+    </div>
   </div>
 
 
