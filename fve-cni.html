@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cenová nabídka FVE – ENERGO GROUP</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #1A1F2B;
+    font-size: 10pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #E8ECF1;
+  }
+
+  /* =================== TOOLBAR (NO PRINT) =================== */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #0B0F17;
+    color: #fff;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    flex-wrap: wrap;
+  }
+  .toolbar-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .toolbar-title .accent { color: #EC6B2D; }
+  .toolbar-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tb-btn {
+    background: #1E2735;
+    color: #fff;
+    border: 1px solid #2A3547;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .tb-btn:hover { background: #2A3547; transform: translateY(-1px); }
+  .tb-btn.primary { background: #EC6B2D; border-color: #EC6B2D; }
+  .tb-btn.primary:hover { background: #D85A1C; }
+  .tb-btn.ghost { background: transparent; border-color: #3A4556; }
+  .tb-btn.ghost:hover { background: #1E2735; }
+
+  .help-hint {
+    background: #FFF4E0;
+    color: #7A4F12;
+    padding: 10px 24px;
+    font-size: 12.5px;
+    border-bottom: 1px solid #F5DFA8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .help-hint .dismiss {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #7A4F12;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 6px;
+  }
+
+  .canvas {
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Edit feedback */
+  [contenteditable="true"] {
+    outline: none;
+    transition: background 0.15s, box-shadow 0.15s;
+    border-radius: 2px;
+  }
+  [contenteditable="true"]:hover {
+    background: rgba(236, 107, 45, 0.08);
+    box-shadow: 0 0 0 2px rgba(236, 107, 45, 0.25);
+  }
+  [contenteditable="true"]:focus {
+    background: rgba(236, 107, 45, 0.12);
+    box-shadow: 0 0 0 2px rgba(236, 107, 45, 0.55);
+  }
+
+  .editable-img {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s;
+  }
+  .editable-img::after {
+    content: "📷 Klikni pro nahrání vlastní fotky";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .editable-img:hover::after { opacity: 1; }
+
+  /* =================== PAGE BASE =================== */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* =================== PAGE 1 - COVER =================== */
+  .cover {
+    background: #0B0F17;
+    color: #ffffff;
+    padding: 18mm 18mm 14mm 18mm;
+  }
+
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: -100mm;
+    right: -80mm;
+    width: 300mm;
+    height: 300mm;
+    background: radial-gradient(circle, rgba(236,107,45,0.25) 0%, rgba(236,107,45,0) 55%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .cover::after {
+    content: "";
+    position: absolute;
+    bottom: -80mm;
+    left: -60mm;
+    width: 220mm;
+    height: 220mm;
+    background: radial-gradient(circle, rgba(30,147,210,0.22) 0%, rgba(30,147,210,0) 55%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .cover-inner { position: relative; z-index: 2; height: 100%; }
+
+  .logo-bar {
+    display: block;
+    height: 26mm;
+    margin-bottom: 12mm;
+  }
+  .logo-bar img { height: 100%; display: block; }
+
+  .label-tag {
+    display: inline-block;
+    font-size: 8.5pt;
+    letter-spacing: 3pt;
+    font-weight: 700;
+    color: #EC6B2D;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1.5px solid #EC6B2D;
+    border-radius: 2px;
+    margin-bottom: 8mm;
+  }
+
+  .cover-title {
+    font-size: 36pt;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.8pt;
+    margin-bottom: 5mm;
+    color: #ffffff;
+  }
+  .cover-title > span:first-child { display: block; margin-bottom: 2mm; }
+  .cover-title .accent {
+    color: #EC6B2D;
+    display: block;
+    font-size: 36pt;
+    letter-spacing: -0.5pt;
+  }
+  .cover-title .accent .kw-small {
+    font-size: 22pt;
+    letter-spacing: 0;
+    vertical-align: baseline;
+    margin-right: 2mm;
+  }
+
+  .cover-subtitle {
+    font-size: 11pt;
+    font-weight: 400;
+    color: #B8C1CC;
+    line-height: 1.45;
+    margin-bottom: 6mm;
+    max-width: 165mm;
+  }
+  .cover-subtitle strong { color: #1E93D2; font-weight: 700; }
+
+  .stats-grid {
+    width: 100%;
+    margin-top: 2mm;
+    border-collapse: collapse;
+  }
+  .stats-grid td {
+    width: 25%;
+    padding: 7mm 4mm;
+    border: 1px solid #1E2735;
+    vertical-align: top;
+    background: rgba(255,255,255,0.02);
+  }
+  .stat-num {
+    font-size: 26pt;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 2mm;
+  }
+  .stat-num .unit { font-size: 12pt; color: #EC6B2D; font-weight: 600; margin-left: 2px; }
+  .stat-lbl {
+    font-size: 8pt;
+    color: #8A94A3;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    font-weight: 600;
+  }
+
+  .project-bar {
+    margin-top: 12mm;
+    background: linear-gradient(90deg, #EC6B2D 0%, #E85A15 100%);
+    padding: 6mm 7mm;
+    color: #ffffff;
+    border-radius: 2px;
+  }
+  .project-bar .lead {
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 2pt;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 1mm;
+  }
+  .project-bar .name {
+    font-size: 17pt;
+    font-weight: 800;
+    letter-spacing: -0.3pt;
+  }
+
+  .highlights {
+    width: 100%;
+    margin-top: 14mm;
+    border-collapse: collapse;
+  }
+  .highlights td {
+    width: 20%;
+    padding: 6mm 3mm;
+    text-align: center;
+    vertical-align: top;
+    border-left: 1px solid #1E2735;
+  }
+  .highlights td:first-child { border-left: none; }
+  .hl-ico {
+    display: inline-block;
+    width: 12mm;
+    height: 12mm;
+    line-height: 12mm;
+    background: rgba(236,107,45,0.12);
+    color: #EC6B2D;
+    border: 1.5px solid rgba(236,107,45,0.6);
+    border-radius: 50%;
+    font-size: 15pt;
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+  .hl-t {
+    font-size: 8.5pt;
+    color: #C6CED9;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.3pt;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 12mm;
+    left: 18mm;
+    right: 18mm;
+    z-index: 2;
+    display: table;
+    width: calc(100% - 36mm);
+    border-top: 1px solid #1E2735;
+    padding-top: 5mm;
+  }
+  .cover-footer > div {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 8.5pt;
+    color: #8A94A3;
+  }
+  .cover-footer .right { text-align: right; color: #B8C1CC; }
+  .cover-footer strong { color: #ffffff; }
+
+  /* =================== SHARED PAGE STYLES =================== */
+  .sheet {
+    background: #ffffff;
+    padding: 13mm 16mm 12mm 16mm;
+    color: #1A1F2B;
+  }
+
+  .page-header {
+    display: table;
+    width: 100%;
+    margin-bottom: 6mm;
+    padding-bottom: 3mm;
+    border-bottom: 2px solid #EC6B2D;
+  }
+  .page-header .ph-left {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 8pt;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 2pt;
+    font-weight: 600;
+  }
+  .page-header .ph-left span { color: #EC6B2D; }
+  .page-header .ph-right {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    font-size: 8pt;
+    color: #6B7280;
+    font-weight: 600;
+  }
+
+  h2.section {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #0B0F17;
+    letter-spacing: -0.3pt;
+    margin-bottom: 3mm;
+    line-height: 1.15;
+  }
+  h2.section .accent { color: #EC6B2D; }
+
+  h3.sub {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1E93D2;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    margin: 2.5mm 0 2mm 0;
+  }
+
+  p { margin-bottom: 2.5mm; }
+
+  .intro-letter {
+    background: #F8F9FB;
+    border-left: 4px solid #1E93D2;
+    padding: 4mm 6mm;
+    margin-bottom: 4mm;
+    font-size: 9.5pt;
+    color: #2D3544;
+    line-height: 1.5;
+  }
+  .intro-letter p { margin-bottom: 1.5mm; }
+  .intro-letter .signature {
+    margin-top: 3mm;
+    font-weight: 700;
+    color: #0B0F17;
+    font-size: 10pt;
+  }
+  .intro-letter .signature .role {
+    display: block;
+    font-weight: 400;
+    font-size: 8.5pt;
+    color: #6B7280;
+    margin-top: 0.5mm;
+  }
+
+  /* ========== KOMPONENTY - KARTY ========== */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3mm;
+    margin-bottom: 4mm;
+  }
+  .comp-card {
+    background: #ffffff;
+    border: 1px solid #E6E9EF;
+    border-left: 3px solid #EC6B2D;
+    padding: 3mm 4mm;
+    position: relative;
+  }
+  .comp-card.battery { border-left-color: #1E93D2; }
+  .comp-card.panel { border-left-color: #EC6B2D; }
+  .comp-card.inverter { border-left-color: #7A4FDB; }
+  .comp-card.misc { border-left-color: #2BD67B; }
+
+  .comp-label {
+    font-size: 7.5pt;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 1pt;
+    font-weight: 600;
+    margin-bottom: 1mm;
+  }
+  .comp-name {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #0B0F17;
+    line-height: 1.25;
+    margin-bottom: 1.5mm;
+  }
+  .comp-specs {
+    font-size: 8.5pt;
+    color: #4A5261;
+    line-height: 1.4;
+  }
+  .comp-specs .count {
+    display: inline-block;
+    font-weight: 700;
+    color: #EC6B2D;
+    margin-right: 3px;
+  }
+
+  .scope-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .scope-table td {
+    width: 50%;
+    padding: 2.5mm 3mm 2.5mm 7mm;
+    vertical-align: top;
+    font-size: 9pt;
+    color: #2D3544;
+    position: relative;
+  }
+  .scope-table td::before {
+    content: "✓";
+    position: absolute;
+    left: 1mm;
+    top: 2.5mm;
+    color: #1E93D2;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+
+  .price-box {
+    background: linear-gradient(135deg, #EC6B2D 0%, #D85A1C 100%);
+    color: #ffffff;
+    padding: 8mm 8mm;
+    margin: 5mm 0 4mm 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+  .price-box::before {
+    content: "";
+    position: absolute;
+    top: -40mm;
+    right: -40mm;
+    width: 100mm;
+    height: 100mm;
+    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 60%);
+    pointer-events: none;
+  }
+  .price-box-inner { position: relative; z-index: 2; }
+  .price-label {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 2.5pt;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 2mm;
+  }
+  .price-amount {
+    font-size: 34pt;
+    font-weight: 900;
+    letter-spacing: -1pt;
+    line-height: 1;
+    margin-bottom: 1.5mm;
+  }
+  .price-amount .currency { font-size: 18pt; font-weight: 700; margin-left: 2mm; }
+  .price-note { font-size: 9pt; opacity: 0.92; }
+
+  .terms-block {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5mm;
+  }
+  .terms-block td {
+    width: 50%;
+    padding: 5mm 6mm;
+    vertical-align: top;
+    border: 1px solid #E6E9EF;
+    background: #F8F9FB;
+  }
+  .terms-title {
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5pt;
+    font-weight: 700;
+    color: #1E93D2;
+    margin-bottom: 3mm;
+  }
+  .terms-list { list-style: none; padding: 0; margin: 0; }
+  .terms-list li {
+    padding: 1mm 0 1mm 6mm;
+    font-size: 9pt;
+    color: #2D3544;
+    position: relative;
+    line-height: 1.45;
+  }
+  .terms-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3mm;
+    width: 3mm;
+    height: 1px;
+    background: #EC6B2D;
+  }
+
+  /* ========== CO2 BANNER ========== */
+  .co2-banner {
+    margin-top: 4mm;
+    padding: 5mm 7mm;
+    background: linear-gradient(90deg, rgba(43,214,123,0.12) 0%, rgba(43,214,123,0.04) 100%);
+    border: 1px solid rgba(43,214,123,0.35);
+    border-left: 4px solid #2BD67B;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6mm;
+  }
+  .co2-icon {
+    flex-shrink: 0;
+    width: 14mm;
+    height: 14mm;
+    border-radius: 50%;
+    background: rgba(43,214,123,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A8C4E;
+    font-size: 14pt;
+    font-weight: 700;
+  }
+  .co2-text {
+    flex: 1;
+  }
+  .co2-label {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5pt;
+    color: #1A8C4E;
+    font-weight: 700;
+    margin-bottom: 1mm;
+  }
+  .co2-value {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #0B0F17;
+  }
+  .co2-value .num { color: #1A8C4E; }
+
+  /* ========== LAYOUT PAGE ========== */
+  .layout-page {
+    padding: 13mm 16mm 12mm 16mm;
+  }
+  .layout-frame {
+    width: 100%;
+    height: 225mm;
+    background: #F0F2F6;
+    border: 2px dashed #B8C1CC;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .layout-frame:hover {
+    border-color: #EC6B2D;
+    background: rgba(236,107,45,0.04);
+  }
+  .layout-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .layout-placeholder {
+    text-align: center;
+    color: #6B7280;
+  }
+  .layout-placeholder .lph-icon {
+    font-size: 32pt;
+    color: #B8C1CC;
+    margin-bottom: 4mm;
+  }
+  .layout-placeholder .lph-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #4A5261;
+    margin-bottom: 2mm;
+  }
+  .layout-placeholder .lph-desc {
+    font-size: 9.5pt;
+    color: #6B7280;
+    max-width: 120mm;
+    margin: 0 auto;
+  }
+
+  /* ========== WHY US ========== */
+  .why-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 4mm;
+  }
+  .why-grid td {
+    width: 50%;
+    padding: 4mm 5mm;
+    vertical-align: top;
+    border: 1px solid #E6E9EF;
+    background: #ffffff;
+  }
+  .why-num {
+    display: inline-block;
+    font-size: 18pt;
+    font-weight: 900;
+    color: #EC6B2D;
+    line-height: 1;
+    margin-bottom: 1.5mm;
+  }
+  .why-title {
+    font-size: 10.5pt;
+    font-weight: 800;
+    color: #0B0F17;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    margin-bottom: 1.5mm;
+  }
+  .why-desc { font-size: 8.5pt; color: #4A5261; line-height: 1.45; }
+
+  .memberships {
+    background: #F8F9FB;
+    padding: 4mm 6mm;
+    margin-bottom: 4mm;
+    border-left: 4px solid #1E93D2;
+  }
+  .memberships .m-title {
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5pt;
+    font-weight: 700;
+    color: #1E93D2;
+    margin-bottom: 2mm;
+  }
+  .memberships .m-list { font-size: 9.5pt; color: #2D3544; font-weight: 600; }
+
+  .signoff {
+    background: #0B0F17;
+    color: #ffffff;
+    padding: 5mm 6mm;
+    margin-top: 6mm;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+  .signoff::before {
+    content: "";
+    position: absolute;
+    top: -25mm;
+    left: -25mm;
+    width: 70mm;
+    height: 70mm;
+    background: radial-gradient(circle, rgba(236,107,45,0.22) 0%, rgba(236,107,45,0) 60%);
+    pointer-events: none;
+  }
+  .signoff-inner { position: relative; z-index: 2; display: table; width: 100%; }
+  .signoff-left, .signoff-right {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .signoff-left { width: 60%; }
+  .signoff-right { width: 40%; text-align: right; }
+  .sign-title {
+    font-size: 7.5pt;
+    color: #1E93D2;
+    text-transform: uppercase;
+    letter-spacing: 1.8pt;
+    font-weight: 700;
+    margin-bottom: 1.5mm;
+  }
+  .sign-name {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.3pt;
+    margin-bottom: 0.8mm;
+  }
+  .sign-role { font-size: 8pt; color: #B8C1CC; }
+  .validity-tag {
+    display: inline-block;
+    border: 1.2px solid #EC6B2D;
+    padding: 2.5mm 4mm;
+    border-radius: 2px;
+  }
+  .validity-tag .v-label {
+    display: block;
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.4pt;
+    color: #EC6B2D;
+    font-weight: 700;
+    margin-bottom: 0.8mm;
+  }
+  .validity-tag .v-date {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 16mm;
+    right: 16mm;
+    padding-top: 3mm;
+    border-top: 1px solid #E6E9EF;
+    display: table;
+    width: calc(100% - 32mm);
+    font-size: 7.5pt;
+    color: #6B7280;
+  }
+  .page-footer > div { display: table-cell; vertical-align: middle; }
+  .page-footer .pf-right { text-align: right; }
+  .page-footer strong { color: #EC6B2D; }
+
+
+  /* Media feature (press mention) - compact strip */
+  .media-feature {
+    display: table;
+    width: 100%;
+    margin-bottom: 4mm;
+    border: 1px solid #E6E9EF;
+    border-radius: 3px;
+    overflow: hidden;
+    table-layout: fixed;
+  }
+  .mf-left {
+    display: table-cell;
+    width: 32mm;
+    padding: 3mm 4mm;
+    background: #0B0F17;
+    color: #ffffff;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mf-left::before {
+    content: "";
+    position: absolute;
+    top: -15mm;
+    right: -15mm;
+    width: 35mm;
+    height: 35mm;
+    background: radial-gradient(circle, rgba(139, 30, 30, 0.45) 0%, rgba(139, 30, 30, 0) 60%);
+    pointer-events: none;
+  }
+  .mf-badge-tag {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 700;
+    color: #EC6B2D;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    border: 1px solid rgba(236,107,45,0.5);
+    padding: 0.8mm 2.5mm;
+    border-radius: 2px;
+    margin-bottom: 2mm;
+  }
+  .mf-brand {
+    position: relative;
+    z-index: 2;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.1pt;
+  }
+  .hn-masthead {
+    position: relative;
+    z-index: 2;
+    margin-top: 2mm;
+    text-align: center;
+  }
+  .hn-mark {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 900;
+    font-size: 22pt;
+    color: #0AAAE6;
+    letter-spacing: -1.5pt;
+    line-height: 0.95;
+    margin-bottom: 0.6mm;
+  }
+  .hn-divider {
+    width: 11mm;
+    height: 1px;
+    background: #0AAAE6;
+    margin: 0 auto 1.2mm auto;
+    opacity: 0.8;
+  }
+  .mf-right {
+    display: table-cell;
+    padding: 4mm 5mm;
+    vertical-align: middle;
+    background: #ffffff;
+  }
+  .mf-overline {
+    font-size: 7pt;
+    color: #005E8C;
+    text-transform: uppercase;
+    letter-spacing: 2pt;
+    font-weight: 700;
+    margin-bottom: 1.5mm;
+  }
+  .mf-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #0B0F17;
+    line-height: 1.3;
+    font-style: italic;
+    margin-bottom: 2mm;
+  }
+  .mf-title::before { content: "„"; color: #005E8C; }
+  .mf-title::after  { content: "\201C"; color: #005E8C; }
+  .mf-link {
+    display: inline-block;
+    font-size: 8pt;
+    color: #EC6B2D;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.3pt;
+    border-bottom: 1px solid rgba(236,107,45,0.3);
+    padding-bottom: 1px;
+  }
+  .mf-link:hover { color: #D85A1C; border-bottom-color: #EC6B2D; }
+
+  .website-ref {
+    margin-top: 7mm;
+    margin-bottom: 3mm;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 600;
+    color: #374151;
+    letter-spacing: 0.03em;
+  }
+  .website-ref a {
+    color: #EC6B2D;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  /* =================== PRINT =================== */
+  @media print {
+    html, body {
+      background: #fff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .no-print { display: none !important; }
+    .canvas {
+      padding: 0 !important;
+      margin: 0 !important;
+      gap: 0 !important;
+      display: block !important;
+    }
+    .page {
+      box-shadow: none !important;
+      margin: 0 !important;
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      page-break-inside: avoid;
+      break-after: page;
+      overflow: hidden;
+    }
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+    [contenteditable="true"]:hover,
+    [contenteditable="true"]:focus {
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    .editable-img, .layout-frame { cursor: default !important; }
+    .editable-img::after { display: none !important; }
+    .layout-frame {
+      border-style: solid !important;
+      border-color: #E6E9EF !important;
+      background: #ffffff !important;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .toolbar { padding: 10px 12px; }
+    .toolbar-title { font-size: 12px; }
+    .tb-btn { font-size: 11px; padding: 6px 10px; }
+    .canvas { padding: 16px 6px; }
+    .page { transform: scale(0.95); transform-origin: top center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================== TOOLBAR ================== -->
+<div class="toolbar no-print">
+  <div class="toolbar-title">Editor FVE · <span class="accent">ENERGO GROUP</span></div>
+  <div class="toolbar-btns">
+    <a class="tb-btn ghost" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center;">← Rozcestník</a>
+    <button class="tb-btn ghost" onclick="saveToStorage()">💾 Uložit koncept</button>
+    <button class="tb-btn ghost" onclick="loadFromStorage()">📂 Načíst koncept</button>
+    <button class="tb-btn ghost" onclick="resetTemplate()">↺ Reset</button>
+    <button class="tb-btn primary" onclick="exportPdf()">📄 Export do PDF</button>
+  </div>
+</div>
+
+<div class="help-hint no-print" id="helpHint">
+  <span>💡</span>
+  <span><strong>Klikni na libovolný text</strong> a uprav ho. Na <strong>straně 5</strong> klikni na plochu pro nahrání vlastního <strong>layoutu FVE</strong> (JPG z jiného programu). Pak stiskni <strong>Export do PDF</strong>.</span>
+  <button class="dismiss" onclick="document.getElementById('helpHint').style.display='none'">×</button>
+</div>
+
+<div class="canvas">
+
+<!-- ==================== PAGE 1 - COVER ==================== -->
+<div class="page cover">
+  <div class="cover-inner">
+
+    <div class="logo-bar">
+      <img src="assets/logo.png" alt="ENERGO GROUP">
+    </div>
+
+    <div class="label-tag" contenteditable="true">Cenová nabídka FVE na klíč</div>
+
+    <div class="cover-title">
+      <span contenteditable="true">Fotovoltaická elektrárna</span>
+      <span class="accent" contenteditable="true">175 kWp</span>
+    </div>
+
+    <div class="cover-subtitle" contenteditable="true">
+      Kompletní dodávka fotovoltaické elektrárny — včetně projektu, střídačů,
+      optimizérů, konstrukce, připojení a uvedení do provozu. Systém
+      <strong>east‑west 10°</strong> s rozložením výroby do celého dne
+      a s použitím nejnovější technologie panelů <strong>TOPCon</strong>.
+    </div>
+
+    <table class="stats-grid" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <div class="stat-num"><span contenteditable="true">175</span> <span class="unit" contenteditable="true">kWp</span></div>
+          <div class="stat-lbl" contenteditable="true">Instalovaný výkon</div>
+        </td>
+        <td>
+          <div class="stat-num"><span contenteditable="true">177</span> <span class="unit" contenteditable="true">MWh</span></div>
+          <div class="stat-lbl" contenteditable="true">Roční výroba</div>
+        </td>
+        <td>
+          <div class="stat-num"><span contenteditable="true">385</span> <span class="unit" contenteditable="true">ks</span></div>
+          <div class="stat-lbl" contenteditable="true">Počet panelů</div>
+        </td>
+        <td>
+          <div class="stat-num"><span contenteditable="true">30</span> <span class="unit" contenteditable="true">let</span></div>
+          <div class="stat-lbl" contenteditable="true">Záruka panelů</div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="project-bar">
+      <div class="lead" contenteditable="true">Zákazník · Projekt</div>
+      <div class="name" contenteditable="true">Firma s.r.o. · 2026/XXXXXX</div>
+    </div>
+
+    <table class="highlights" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <div class="hl-ico">☀</div>
+          <div class="hl-t" contenteditable="true">TOPCon<br>Trina Vertex S+</div>
+        </td>
+        <td>
+          <div class="hl-ico">⚡</div>
+          <div class="hl-t" contenteditable="true">Solax AELIO P60<br>120 kW</div>
+        </td>
+        <td>
+          <div class="hl-ico">◎</div>
+          <div class="hl-t" contenteditable="true">Optimizéry Tigo<br>požární bezpečnost</div>
+        </td>
+        <td>
+          <div class="hl-ico">▤</div>
+          <div class="hl-t" contenteditable="true">K2 / EW 10°<br>konstrukce</div>
+        </td>
+        <td>
+          <div class="hl-ico">☁</div>
+          <div class="hl-t" contenteditable="true">Cloud<br>monitoring</div>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div class="cover-footer">
+    <div>
+      <strong contenteditable="true">ENERGO GROUP Development s.r.o.</strong><br>
+      <span contenteditable="true">K Hájům 1233/2, 155 00 Praha  ·  IČ: 01797174 / DIČ: CZ01797174</span><br>
+      <span contenteditable="true">UniCredit Bank Czech Republic and Slovakia, a.s.  ·  č.ú.: 7907/2700</span>
+    </div>
+    <div class="right">
+      <span contenteditable="true">+420 705 899 990 · info@energogroup.cz</span><br>
+      <strong contenteditable="true">www.energogroup.cz</strong>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== PAGE 2 - INTRO + KEY PARAMETERS ==================== -->
+<div class="page sheet">
+
+  <div class="page-header">
+    <div class="ph-left"><span contenteditable="true">Úvod</span> <span>/</span> <span contenteditable="true">Klíčové parametry</span></div>
+    <div class="ph-right" contenteditable="true">Strana 02 / 06</div>
+  </div>
+
+  <div class="intro-letter">
+    <p contenteditable="true">Vážený pane jednateli,</p>
+    <p contenteditable="true">na základě zaslaných podkladů a obhlídky místa instalace Vám zasíláme nabídku na realizaci
+    <strong>fotovoltaické elektrárny na klíč</strong>, včetně propojení do objektu a zajištění
+    veškeré dokumentace nutné pro provozování výrobny FVE.</p>
+    <p contenteditable="true">Dle dostupných podkladů jsme zvolili nejoptimálnější umístění panelů — navržený systém
+    <strong>east‑west 10°</strong> má výhodu v nižším zatížení střechy a rozložení výroby do celého dne.
+    Navrhujeme použití technologie panelu <strong>TOPCon</strong> s velmi nízkou degradací, zárukou poklesu výkonu
+    30 let a vysokou účinností při nízkém osvitu.</p>
+    <p contenteditable="true">Technologie držíme skladem a jsme autorizovaným montážním a servisním partnerem společnosti
+    <strong>SolarEdge, Solax a Huawei</strong> pro Českou Republiku. S energetikou máme zkušenosti více
+    než 15 let — těšíme se na naší spolupráci.</p>
+    <div class="signature">
+      <span contenteditable="true">Václav Příhoda</span>
+      <span class="role" contenteditable="true">jednatel společnosti ENERGO GROUP Development s.r.o.</span>
+    </div>
+  </div>
+
+  <h3 class="sub" contenteditable="true">Klíčové parametry kalkulace</h3>
+
+  <table class="comp-grid" cellspacing="0" cellpadding="0" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:3mm;">
+    <tr style="display:contents;">
+      <td class="comp-card panel" style="display:block;">
+        <div class="comp-label" contenteditable="true">Instalovaný výkon</div>
+        <div class="comp-name"><span contenteditable="true">175,18 kWp</span></div>
+        <div class="comp-specs" contenteditable="true">385 ks panelů TOPCon 455 Wp</div>
+      </td>
+      <td class="comp-card inverter" style="display:block;">
+        <div class="comp-label" contenteditable="true">Výkon AC</div>
+        <div class="comp-name"><span contenteditable="true">120 kW</span></div>
+        <div class="comp-specs" contenteditable="true">2× Solax AELIO P60 střídač</div>
+      </td>
+      <td class="comp-card misc" style="display:block;">
+        <div class="comp-label" contenteditable="true">Roční odhad výroby</div>
+        <div class="comp-name"><span contenteditable="true">177,07 MWh</span></div>
+        <div class="comp-specs" contenteditable="true">East‑West 10° orientace</div>
+      </td>
+      <td class="comp-card misc" style="display:block;">
+        <div class="comp-label" contenteditable="true">Záruka výkonu</div>
+        <div class="comp-name"><span contenteditable="true">30 let</span></div>
+        <div class="comp-specs" contenteditable="true">Trina Vertex S+ TOPCon</div>
+      </td>
+    </tr>
+  </table>
+
+  <h3 class="sub" contenteditable="true">Údaje o zákazníkovi a projektu</h3>
+
+  <table style="width:100%; border-collapse:collapse; font-size:9pt;">
+    <tr>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; width:40%; font-weight:600; color:#6B7280;" contenteditable="true">Firma / zákazník</td>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">Firma s.r.o.</td>
+    </tr>
+    <tr>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Adresa instalace</td>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">Adresa 123, 123 45 Město</td>
+    </tr>
+    <tr>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Datum zpracování nabídky</td>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">__.__.2026</td>
+    </tr>
+    <tr>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Číslo nabídky</td>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">2026/XXXXXX</td>
+    </tr>
+    <tr>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF; background:#F8F9FB; font-weight:600; color:#6B7280;" contenteditable="true">Platnost nabídky</td>
+      <td style="padding:2mm 4mm; border:1px solid #E6E9EF;" contenteditable="true">30 dní od vystavení</td>
+    </tr>
+  </table>
+
+  <div class="page-footer">
+    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+  </div>
+</div>
+
+
+<!-- ==================== PAGE 3 - HLAVNÍ KOMPONENTY ==================== -->
+<div class="page sheet">
+
+  <div class="page-header">
+    <div class="ph-left"><span contenteditable="true">Hlavní komponenty</span> <span>/</span> <span contenteditable="true">FVE</span></div>
+    <div class="ph-right" contenteditable="true">Strana 03 / 06</div>
+  </div>
+
+  <h2 class="section"><span contenteditable="true">Hlavní součásti</span> <span class="accent" contenteditable="true">FVE</span></h2>
+  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;" contenteditable="true">
+    Sestava komponent byla zvolena s důrazem na dlouhou životnost, vysokou účinnost
+    a celoroční stabilitu výroby.
+  </p>
+
+  <div class="comp-grid">
+
+    <div class="comp-card panel">
+      <div class="comp-label" contenteditable="true">Solární panely</div>
+      <div class="comp-name"><span class="count" contenteditable="true">385 ks</span> <span contenteditable="true">Trina Vertex S+ 455 Wp</span></div>
+      <div class="comp-specs" contenteditable="true">TOPCon double glass, black frame · TSM‑455‑NEG9R.28 · účinnost 22,5 %
+      · Tier 1 výrobce · záruka poklesu výkonu 30 let</div>
+    </div>
+
+    <div class="comp-card inverter">
+      <div class="comp-label" contenteditable="true">Střídače</div>
+      <div class="comp-name"><span class="count" contenteditable="true">2 ks</span> <span contenteditable="true">Solax AELIO P60</span></div>
+      <div class="comp-specs" contenteditable="true">3fázové · 2× 60 kW = 120 kW celkem · autorizovaný partner Solax pro ČR
+      · záruka 10 let</div>
+    </div>
+
+    <div class="comp-card misc">
+      <div class="comp-label" contenteditable="true">Optimizéry / požární bezpečnost</div>
+      <div class="comp-name"><span class="count" contenteditable="true">193 ks</span> <span contenteditable="true">Tigo TS4‑A‑2F</span></div>
+      <div class="comp-specs" contenteditable="true">Rapid shutdown na úrovni panelu · monitoring výkonu
+      · vysílač Tigo CCA (1 ks) · plná kompatibilita s PBO</div>
+    </div>
+
+    <div class="comp-card misc">
+      <div class="comp-label" contenteditable="true">Konstrukce</div>
+      <div class="comp-name"><span contenteditable="true">East‑West 10° konstrukce</span></div>
+      <div class="comp-specs" contenteditable="true">Kvalitní hliníková konstrukce pro ploché a šikmé střechy
+      · minimální zatížení střechy · dlouhá životnost</div>
+    </div>
+
+    <div class="comp-card misc">
+      <div class="comp-label" contenteditable="true">Rozvaděče a kabeláž</div>
+      <div class="comp-name"><span contenteditable="true">AC + DC rozvaděče FVE</span></div>
+      <div class="comp-specs" contenteditable="true">Přepěťové ochrany (AC i DC), detekce izolačního odporu,
+      kabeláž optimalizovaná pro minimální přenosové ztráty</div>
+    </div>
+
+    <div class="comp-card misc">
+      <div class="comp-label" contenteditable="true">Monitoring a řízení</div>
+      <div class="comp-name"><span contenteditable="true">Cloud monitoring + EMS</span></div>
+      <div class="comp-specs" contenteditable="true">24/7 vzdálený dohled · reporting výroby
+      · dispečerské řízení splňující požadavky na kybernetickou bezpečnost</div>
+    </div>
+
+    <div class="comp-card misc">
+      <div class="comp-label" contenteditable="true">Projekt a administrativa</div>
+      <div class="comp-name"><span contenteditable="true">Projektová dokumentace · inženýring</span></div>
+      <div class="comp-specs" contenteditable="true">PD pro stavební povolení i kolaudaci · komunikace s distribuční
+      společností · revize · výrobna</div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+  </div>
+</div>
+
+
+<!-- ==================== PAGE 4 - SCOPE + PRICE + PAYMENT ==================== -->
+<div class="page sheet">
+
+  <div class="page-header">
+    <div class="ph-left"><span contenteditable="true">Rozsah dodávky</span> <span>/</span> <span contenteditable="true">Cena a harmonogram</span></div>
+    <div class="ph-right" contenteditable="true">Strana 04 / 06</div>
+  </div>
+
+  <h2 class="section"><span contenteditable="true">Rozsah</span> <span class="accent" contenteditable="true">dodávky na klíč</span></h2>
+  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;" contenteditable="true">
+    Cena zahrnuje kompletní dodávku a realizaci fotovoltaické elektrárny
+    včetně projektu, inženýringu, stavebních prací, instalace a uvedení do provozu.
+  </p>
+
+  <table class="scope-table" cellspacing="0" cellpadding="0">
+    <tr>
+      <td contenteditable="true">Návrh optimálního řešení FVE</td>
+      <td contenteditable="true">Řízení projektu</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Projektová dokumentace pro SP a kolaudaci</td>
+      <td contenteditable="true">Komunikace s distribuční společností</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Dodávka panelů, střídačů, optimizérů</td>
+      <td contenteditable="true">Rozvaděče AC/DC a kabeláž</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Konstrukce East‑West / K2 Systems</td>
+      <td contenteditable="true">Doprava a složení technologie na lokalitě</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Instalace panelů a střídačů</td>
+      <td contenteditable="true">Požární bezpečnost (optimizéry, rapid shutdown)</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Integrace s EMS a dispečerským řízením</td>
+      <td contenteditable="true">Kybernetická bezpečnost dle vyhlášky</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Administrativa, připojení, revize</td>
+      <td contenteditable="true">Cloud monitoring a reporting</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Předání, zaškolení obsluhy, zkušební provoz</td>
+      <td contenteditable="true">Záruční servis a O&amp;M na vyžádání</td>
+    </tr>
+  </table>
+
+  <div class="price-box">
+    <div class="price-box-inner">
+      <div class="price-label" contenteditable="true">Cena FVE na klíč</div>
+      <div class="price-amount"><span contenteditable="true">3&nbsp;250&nbsp;000</span><span class="currency" contenteditable="true">Kč</span></div>
+      <div class="price-note" contenteditable="true">bez DPH · zahrnuje všechny položky rozsahu dodávky uvedené výše</div>
+    </div>
+  </div>
+
+  <table class="terms-block" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <div class="terms-title" contenteditable="true">Harmonogram</div>
+        <ul class="terms-list">
+          <li contenteditable="true"><strong>0. měsíc:</strong> podpis SoD a úhrada zálohové faktury</li>
+          <li contenteditable="true"><strong>1.–3. měsíc:</strong> PD, administrativa, dodávka technologií</li>
+          <li contenteditable="true"><strong>3.–4. měsíc:</strong> instalace, uvedení do provozu, revize a předání</li>
+        </ul>
+      </td>
+      <td>
+        <div class="terms-title" contenteditable="true">Platební podmínky</div>
+        <ul class="terms-list">
+          <li contenteditable="true"><strong>10 %</strong> po podpisu Smlouvy o dílo</li>
+          <li contenteditable="true"><strong>60 %</strong> při potvrzení termínu montáže</li>
+          <li contenteditable="true"><strong>30 %</strong> po předání · splatnost 7 dnů</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <div class="co2-banner">
+    <div class="co2-icon">CO₂</div>
+    <div class="co2-text">
+      <div class="co2-label" contenteditable="true">Úspora emisí</div>
+      <div class="co2-value"><span class="num" contenteditable="true">90 840</span> <span contenteditable="true">kg CO₂ / rok</span></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+  </div>
+</div>
+
+
+<!-- ==================== PAGE 5 - LAYOUT FVE ==================== -->
+<div class="page sheet layout-page">
+
+  <div class="page-header">
+    <div class="ph-left"><span contenteditable="true">Layout FVE</span> <span>/</span> <span contenteditable="true">Umístění na budově</span></div>
+    <div class="ph-right" contenteditable="true">Strana 05 / 06</div>
+  </div>
+
+  <h2 class="section"><span contenteditable="true">Layout</span> <span class="accent" contenteditable="true">FVE na budově</span></h2>
+  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:5mm;" contenteditable="true">
+    Navržené umístění panelů, orientace a rozložení stringů. Konkrétní rozmístění dle
+    statického posouzení a stínových analýz.
+  </p>
+
+  <div class="layout-frame" onclick="uploadLayoutImage(this)" title="Klikni pro nahrání layoutu z jiného programu">
+    <div class="layout-placeholder" id="layoutPlaceholder">
+      <div class="lph-icon">🖼</div>
+      <div class="lph-title">Klikni pro nahrání layoutu FVE</div>
+      <div class="lph-desc">
+        Nahraj JPG nebo PNG layout z tvého plánovacího programu (např. PV*SOL, Helios 3D,
+        SketchUp). Obrázek se zobrazí zde a v exportovaném PDF.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div><span contenteditable="true">ENERGO GROUP Development s.r.o.</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+    <div class="pf-right" contenteditable="true">Cenová nabídka · 2026/XXXXXX</div>
+  </div>
+</div>
+
+
+<!-- ==================== PAGE 6 - WHY US & SIGNATURE ==================== -->
+<div class="page sheet">
+
+  <div class="page-header">
+    <div class="ph-left"><span contenteditable="true">Proč s námi</span> <span>/</span> <span contenteditable="true">Kontakt</span></div>
+    <div class="ph-right" contenteditable="true">Strana 06 / 06</div>
+  </div>
+
+  <h2 class="section"><span contenteditable="true">Proč</span> <span class="accent" contenteditable="true">ENERGO GROUP</span></h2>
+  <p style="color:#4A5261; font-size:9.5pt; margin-bottom:6mm;" contenteditable="true">
+    Jsme renomovaná společnost specializující se na kompletní realizaci průmyslových
+    fotovoltaických elektráren a akumulace BESS. Téměř všichni členové týmu pracují
+    v energetice více než 15 let.
+  </p>
+
+  <table class="why-grid" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <div class="why-num" contenteditable="true">01</div>
+        <div class="why-title" contenteditable="true">Na klíč</div>
+        <div class="why-desc" contenteditable="true">
+          Jsme zodpovědní za všechny činnosti — projektování, inženýring,
+          dodávku, výstavbu i uvedení do provozu. Jeden partner, jedna odpovědnost.
+        </div>
+      </td>
+      <td>
+        <div class="why-num" contenteditable="true">02</div>
+        <div class="why-title" contenteditable="true">TOP komponenty</div>
+        <div class="why-desc" contenteditable="true">
+          Autorizovaný partner SolarEdge, Solax a Huawei pro ČR. Panely TOPCon
+          Tier 1 výrobců, všechny technologie držíme skladem.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="why-num" contenteditable="true">03</div>
+        <div class="why-title" contenteditable="true">Jasný termín</div>
+        <div class="why-desc" contenteditable="true">
+          Ve Smlouvě o dílo uvádíme termín instalace, který dodržíme.
+          Jasné milníky, transparentní reporting, žádná překvapení.
+        </div>
+      </td>
+      <td>
+        <div class="why-num" contenteditable="true">04</div>
+        <div class="why-title" contenteditable="true">Provoz a údržba</div>
+        <div class="why-desc" contenteditable="true">
+          Pro všechny instalace nabízíme servis a provozování (O&amp;M) — od
+          preventivní údržby přes vzdálený dohled až po pohotovostní servis.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="width:100%;">
+        <div class="why-num" contenteditable="true">05</div>
+        <div class="why-title" contenteditable="true">Znáte nás</div>
+        <div class="why-desc" contenteditable="true">
+          Za naší prací si stojíme. Na všech projektech se přímo podílí management
+          společnosti, který je Vám kdykoli k dispozici. 15+ let zkušeností v energetice,
+          vlastní pipeline FVE a BESS projektů v rámci celé ČR.
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+  <div class="media-feature">
+    <div class="mf-left">
+      <div class="mf-badge-tag" contenteditable="true">Debata</div>
+      <div class="hn-masthead">
+        <div class="hn-mark">HN</div>
+        <div class="hn-divider"></div>
+        <div class="mf-brand" contenteditable="true">Hospodářské noviny</div>
+      </div>
+    </div>
+    <div class="mf-right">
+      <div class="mf-overline" contenteditable="true">ENERGO GROUP  ·  AKTUÁLNĚ  ·  V&nbsp;MÉDIÍCH</div>
+      <div class="mf-title" contenteditable="true">Energetické superdálnice umožní sdílení energie z&nbsp;baterií i&nbsp;mezi státy</div>
+      <a class="mf-link" href="https://archiv.hn.cz/c1-67864210-energeticke-superdalnice-umozni-sdileni-energie-z-baterii-i-mezi-staty" target="_blank" rel="noopener">→&nbsp;&nbsp;archiv.hn.cz/c1-67864210</a>
+    </div>
+  </div>
+
+  <div class="memberships">
+    <div class="m-title" contenteditable="true">Členství v odborných asociacích</div>
+    <div class="m-list" contenteditable="true">Solární asociace &nbsp;·&nbsp; Česká fotovoltaická asociace &nbsp;·&nbsp; Unie komunitní energetiky (UKEN)</div>
+  </div>
+
+  <div class="signoff">
+    <div class="signoff-inner">
+      <div class="signoff-left">
+        <div class="sign-title" contenteditable="true">S přáním úspěšné spolupráce</div>
+        <div class="sign-name" contenteditable="true">Václav Příhoda</div>
+        <div class="sign-role" contenteditable="true">jednatel společnosti · ENERGO GROUP Development s.r.o.</div>
+      </div>
+      <div class="signoff-right">
+        <div class="validity-tag">
+          <span class="v-label" contenteditable="true">Platnost nabídky</span>
+          <span class="v-date" contenteditable="true">30 dní od vystavení</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="website-ref">
+    Další informace a reference naleznete na <a href="https://www.energogroup.cz" target="_blank">www.energogroup.cz</a>
+  </div>
+
+  <div class="page-footer">
+    <div>
+      <strong contenteditable="true">ENERGO GROUP Development s.r.o.</strong> · <span contenteditable="true">K Hájům 1233/2, 155 00 Praha · +420 705 899 990</span>
+    </div>
+    <div class="pf-right"><span contenteditable="true">info@energogroup.cz</span> · <strong contenteditable="true">www.energogroup.cz</strong></div>
+  </div>
+</div>
+
+</div><!-- /canvas -->
+
+<!-- ================== SCRIPTS ================== -->
+<script>
+const STORAGE_KEY = 'energogroup_nabidka_fve_cni_draft_v1';
+const STORAGE_LAYOUT_KEY = 'energogroup_nabidka_fve_cni_layout_v1';
+
+// ===== Export to PDF with dynamic title =====
+function exportPdf() {
+  const projectEl = document.querySelector('.project-bar .name');
+  const projectRaw = (projectEl && projectEl.innerText ? projectEl.innerText : '').trim();
+  const projectClean = projectRaw.replace(/[\/\\]+/g, '-').replace(/\s+/g, ' ') || 'projekt';
+
+  const originalTitle = document.title;
+  document.title = `Cenová nabídka FVE – ${projectClean}`;
+
+  const restore = () => {
+    document.title = originalTitle;
+    window.removeEventListener('afterprint', restore);
+  };
+  window.addEventListener('afterprint', restore);
+  setTimeout(restore, 2000);
+
+  window.print();
+}
+
+// Restore layout image on load
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const imgData = localStorage.getItem(STORAGE_LAYOUT_KEY);
+    if (imgData) {
+      replaceLayoutImg(imgData);
+    }
+  } catch (e) { /* ignore */ }
+});
+
+function uploadLayoutImage(el) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target.result;
+      replaceLayoutImg(dataUrl);
+      try {
+        localStorage.setItem(STORAGE_LAYOUT_KEY, dataUrl);
+      } catch (err) {
+        alert('Obrázek je příliš velký pro uložení do prohlížeče. Zkus JPG s menší kompresí (<3 MB).');
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+function replaceLayoutImg(dataUrl) {
+  const frame = document.querySelector('.layout-frame');
+  if (!frame) return;
+  // Remove placeholder
+  const placeholder = frame.querySelector('#layoutPlaceholder');
+  if (placeholder) placeholder.remove();
+  // Remove old img
+  const old = frame.querySelector('img');
+  if (old) old.remove();
+  // Add new img
+  const img = document.createElement('img');
+  img.src = dataUrl;
+  img.alt = 'Layout FVE na budově';
+  frame.appendChild(img);
+}
+
+function saveToStorage() {
+  const fields = {};
+  document.querySelectorAll('[contenteditable="true"]').forEach((el, i) => {
+    fields[i] = el.innerHTML;
+  });
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(fields));
+    showToast('✓ Koncept uložen do prohlížeče');
+  } catch (e) {
+    alert('Uložení se nezdařilo: ' + e.message);
+  }
+}
+
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      showToast('Žádný uložený koncept nebyl nalezen');
+      return;
+    }
+    const fields = JSON.parse(raw);
+    document.querySelectorAll('[contenteditable="true"]').forEach((el, i) => {
+      if (fields[i] !== undefined) el.innerHTML = fields[i];
+    });
+    showToast('✓ Koncept načten');
+  } catch (e) {
+    alert('Načtení se nezdařilo: ' + e.message);
+  }
+}
+
+function resetTemplate() {
+  if (!confirm('Opravdu chceš vymazat všechny úpravy a vrátit šablonu do výchozího stavu? Tato akce nevratně zahodí změny, které nebyly uloženy.')) return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_LAYOUT_KEY);
+  } catch (e) { /* ignore */ }
+  location.reload();
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0B0F17;color:#fff;padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:1000;opacity:0;transition:opacity 0.2s;';
+  document.body.appendChild(t);
+  requestAnimationFrame(() => t.style.opacity = '1');
+  setTimeout(() => {
+    t.style.opacity = '0';
+    setTimeout(() => t.remove(), 300);
+  }, 2000);
+}
+
+// Prevent weird HTML in single-line editables
+document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+  const inlineClasses = ['stat-num', 'stat-lbl', 'label-tag', 'project-bar', 'ph-left', 'ph-right', 'sign-title', 'sign-name', 'v-label', 'v-date', 'price-label', 'price-amount', 'terms-title', 'm-title', 'why-num', 'why-title', 'comp-label', 'comp-name', 'co2-label', 'co2-value'];
+  if (el.closest && inlineClasses.some(c => el.closest('.' + c))) {
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+      }
+    });
+  }
+  // Paste as plain text
+  el.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text');
+    document.execCommand('insertText', false, text);
+  });
+});
+
+// Dirty flag & beforeunload warn
+let isDirty = false;
+document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+  el.addEventListener('input', () => { isDirty = true; });
+});
+window.addEventListener('beforeunload', (e) => {
+  if (isDirty) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+const originalSave = saveToStorage;
+saveToStorage = function() { originalSave(); isDirty = false; };
+</script>
+
+</body>
+</html>
