@@ -1679,7 +1679,7 @@ window.addEventListener('beforeunload', (e) => {
 const originalSave = saveToStorage;
 saveToStorage = function() { originalSave(); isDirty = false; };
 
-// ============ LIGHT MODE (toggle + auto pro tisk) ============
+// ============ LIGHT MODE (toggle ovládá náhled i PDF) ============
 function toggleLightPreview() {
   const on = document.body.classList.toggle('light-on');
   const btn = document.getElementById('lightToggleBtn');
@@ -1687,7 +1687,7 @@ function toggleLightPreview() {
   try { localStorage.setItem('energogroup_light_preview', on ? '1' : '0'); } catch(e) {}
 }
 (function initLightMode() {
-  // Obnov uloženou preferenci náhledu
+  // Obnov uloženou preferenci náhledu (PDF/tisk pak respektuje aktuální stav)
   try {
     if (localStorage.getItem('energogroup_light_preview') === '1') {
       document.body.classList.add('light-on');
@@ -1695,15 +1695,6 @@ function toggleLightPreview() {
       if (btn) btn.innerHTML = '🌙 Náhled tmavé';
     }
   } catch(e) {}
-  // Automaticky aktivuj světlou pro tisk / PDF export
-  let wasOnBeforePrint = false;
-  window.addEventListener('beforeprint', () => {
-    wasOnBeforePrint = document.body.classList.contains('light-on');
-    document.body.classList.add('light-on');
-  });
-  window.addEventListener('afterprint', () => {
-    if (!wasOnBeforePrint) document.body.classList.remove('light-on');
-  });
 })();
 </script>
 
