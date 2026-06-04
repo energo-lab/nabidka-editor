@@ -128,42 +128,9 @@ body.light-on .page [style*="color:#fff"] {
   color: #1A1F2B !important;
 }
 
-/* ---------- @media print fallback (vždy světlé) ---------- */
-/* Záložní pro případ, že beforeprint event se nespustí (některé staré prohlížeče). */
+/* ---------- @media print (jen skrytí toggle tlačítka) ---------- */
+/* PDF/tisk respektuje aktuální stav body.light-on — pokud chceš světlé PDF,
+   musíš nejdřív kliknout na "☀️ Náhled světlé" v toolbaru. */
 @media print {
   .light-toggle { display: none !important; }
-
-  .page.cover, .cover {
-    background: #ffffff !important;
-    color: #1A1F2B !important;
-  }
-  .cover::before { background: radial-gradient(circle, rgba(236,107,45,0.10) 0%, rgba(236,107,45,0) 55%) !important; }
-  .cover::after  { background: radial-gradient(circle, rgba(30,147,210,0.08) 0%, rgba(30,147,210,0) 55%) !important; }
-  .cover-title, .cover-title > span:first-child, .stat-num, .cover-kpi .kpi-num,
-  .cover-footer strong, .sign-name, .signoff strong { color: #0B0F17 !important; }
-  .cover-subtitle { color: #4A5260 !important; }
-  .cover-subtitle strong { color: #1E93D2 !important; }
-  .stats-grid td { background: rgba(11,15,23,0.025) !important; border-color: #E1E5EB !important; }
-  .stat-lbl, .cover-kpi .kpi-label, .cover-footer > div, .cover-footer .right { color: #5A6470 !important; }
-  .cover-kpi { background: rgba(236,107,45,0.06) !important; border-color: rgba(236,107,45,0.45) !important; }
-  .highlights td { border-left-color: #E1E5EB !important; }
-  .hl-t { color: #4A5260 !important; }
-  .hl-ico { background: rgba(236,107,45,0.10) !important; border-color: rgba(236,107,45,0.55) !important; }
-  .cover-footer { border-top-color: #E1E5EB !important; }
-
-  .product-hero { background: #F8F9FB !important; color: #1A1F2B !important; border: 1px solid #E1E5EB !important; }
-  .product-hero .ph-img-wrap { background: #ffffff !important; border: 1px solid #E1E5EB !important; }
-  .product-hero h3, .product-hero .ph-title, .product-hero strong { color: #0B0F17 !important; }
-  .product-hero p, .product-hero li, .product-hero td { color: #2D3544 !important; }
-  .signoff { background: #F8F9FB !important; color: #1A1F2B !important; border: 1px solid #E1E5EB !important; }
-  .signoff .sign-role, .signoff .role { color: #5A6470 !important; }
-  .validity-tag .v-date { color: #5A6470 !important; }
-  .signoff::before, .signoff::after, .product-hero::before, .product-hero::after { opacity: 0.35 !important; }
-
-  .page [style*="background: #0B0F17"],
-  .page [style*="background:#0B0F17"] { background: #F8F9FB !important; color: #1A1F2B !important; }
-  .page [style*="color: #ffffff"],
-  .page [style*="color:#ffffff"],
-  .page [style*="color: #fff"],
-  .page [style*="color:#fff"] { color: #1A1F2B !important; }
 }
